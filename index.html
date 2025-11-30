@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Tokbolat & Gaisina Sustainability Consulting</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <title>Gaisina Consulting Group | AI-Powered Sustainability Consulting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Gaisina Consulting Group helps organisations achieve circular, low-carbon and ESG-aligned outcomes using AI, data analytics and whole-life sustainability expertise.">
   <style>
     :root {
       --bg: #f7f9fb;
-      --accent: #0b5f6f;
-      --accent-soft: #e0f0f3;
+      --accent: #0a2342;   /* navy */
+      --accent-soft: #e1e8f3;
+      --accent-alt: #3a77b7; /* sky blue */
       --text: #222;
       --muted: #555;
       --white: #ffffff;
@@ -33,7 +35,7 @@
     }
 
     .nav {
-      max-width: 1080px;
+      max-width: 1100px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -41,17 +43,45 @@
       padding: 0.75rem 1.25rem;
     }
 
-    .logo {
+    .logo-mark {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .logo-text-main {
       font-weight: 600;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.05em;
+      font-size: 0.95rem;
       color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .logo-text-sub {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
     }
 
     nav a {
       margin-left: 1rem;
       text-decoration: none;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
     }
 
     nav a:hover {
@@ -59,7 +89,7 @@
     }
 
     main {
-      max-width: 1080px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 2rem 1.25rem 4rem;
     }
@@ -73,7 +103,7 @@
       color: var(--accent);
     }
 
-    h1 { font-size: 2.1rem; }
+    h1 { font-size: 2.15rem; }
     h2 { font-size: 1.6rem; }
     h3 { font-size: 1.2rem; }
 
@@ -81,24 +111,37 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.5fr);
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.5fr);
       gap: 2rem;
       align-items: center;
       margin-top: 2.5rem;
     }
 
+    .hero-copy p {
+      font-size: 1.02rem;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.7rem;
+      color: var(--accent-alt);
+      margin-bottom: 0.3rem;
+    }
+
     .hero-card {
       background: var(--white);
-      border-radius: 0.9rem;
-      padding: 1.25rem 1.5rem;
-      box-shadow: 0 12px 30px rgba(15, 35, 52, 0.08);
+      border-radius: 1rem;
+      padding: 1.3rem 1.4rem;
+      box-shadow: 0 14px 32px rgba(12, 32, 60, 0.12);
+      border: 1px solid #d8e2f0;
     }
 
     .pillars {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1rem;
-      margin-top: 1.5rem;
+      margin-top: 2rem;
     }
 
     .card {
@@ -106,12 +149,13 @@
       border-radius: 0.9rem;
       padding: 1rem 1.1rem;
       box-shadow: 0 4px 14px rgba(15, 35, 52, 0.06);
+      border: 1px solid #e0e6f0;
     }
 
     .pill {
       display: inline-flex;
       align-items: center;
-      padding: 0.1rem 0.55rem;
+      padding: 0.16rem 0.6rem;
       border-radius: 999px;
       font-size: 0.8rem;
       background: var(--accent-soft);
@@ -120,33 +164,41 @@
     }
 
     .btn-row {
-      margin-top: 1.2rem;
+      margin-top: 1.3rem;
       display: flex;
-      gap: 0.75rem;
+      gap: 0.8rem;
       flex-wrap: wrap;
     }
 
     .btn {
       border-radius: 999px;
       border: none;
-      padding: 0.6rem 1.3rem;
+      padding: 0.65rem 1.4rem;
       font-size: 0.95rem;
       cursor: pointer;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      transition: transform 0.05s ease, box-shadow 0.05s ease, background 0.1s ease;
+      white-space: nowrap;
     }
 
     .btn-primary {
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--accent), var(--accent-alt));
       color: var(--white);
+      box-shadow: 0 10px 22px rgba(12, 32, 60, 0.28);
     }
 
     .btn-outline {
       background: transparent;
       color: var(--accent);
       border: 1px solid var(--accent);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 30px rgba(15, 35, 52, 0.16);
     }
 
     ul {
@@ -162,10 +214,27 @@
       gap: 1.5rem;
     }
 
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .stat {
+      flex: 1 1 140px;
+      background: var(--accent-soft);
+      border-radius: 0.7rem;
+      padding: 0.7rem 0.8rem;
+      font-size: 0.86rem;
+      color: var(--accent);
+    }
+
     .contact-form {
       display: grid;
       gap: 0.75rem;
       margin-top: 1rem;
+      max-width: 520px;
     }
 
     .contact-form input,
@@ -176,25 +245,63 @@
       border: 1px solid #ccd6e0;
       font-family: inherit;
       font-size: 0.95rem;
+      background: var(--white);
     }
 
     textarea { min-height: 120px; resize: vertical; }
 
     footer {
       border-top: 1px solid #dde3ea;
-      padding: 1rem 1.25rem;
+      padding: 1.2rem 1.25rem 1rem;
       text-align: center;
       font-size: 0.8rem;
       color: var(--muted);
       background: #f1f4f7;
     }
 
+    footer a {
+      color: var(--accent-alt);
+      text-decoration: none;
+    }
+
+    .media-block {
+      background: radial-gradient(circle at top left, #e6edf8 0, #f7f9fb 42%, #ffffff 100%);
+      border-radius: 1rem;
+      padding: 1.1rem 1.2rem;
+      border: 1px solid #d6e1f0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .media-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 0.7rem;
+      background: repeating-linear-gradient(
+        135deg,
+        #dbe4f3,
+        #dbe4f3 10px,
+        #edf1fa 10px,
+        #edf1fa 20px
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
     @media (max-width: 760px) {
+      header { position: static; }
+      .nav { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
       .hero {
         grid-template-columns: minmax(0, 1fr);
       }
-      header { position: static; }
-      .nav { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+      .media-block {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
   </style>
 </head>
@@ -202,105 +309,81 @@
 
 <header>
   <div class="nav">
-    <div class="logo">Tokbolat &amp; Gaisina</div>
+    <div class="logo-mark">
+      <div class="logo-icon">G</div>
+      <div>
+        <div class="logo-text-main">Gaisina Consulting Group</div>
+        <div class="logo-text-sub">AI-Powered Sustainability Consulting</div>
+      </div>
+    </div>
     <nav>
       <a href="#home">Home</a>
-      <a href="#about">About</a>
       <a href="#services">Services</a>
-      <a href="#approach">Our Approach</a>
-      <a href="#training">Training</a>
+      <a href="#approach">Approach</a>
+      <a href="#sectors">Sectors</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
 </header>
 
 <main>
-  <!-- HOME -->
+  <!-- HERO -->
   <section id="home">
     <div class="hero">
-      <div>
-        <h1>AI-driven Sustainability Consulting for the Built Environment</h1>
+      <div class="hero-copy">
+        <div class="eyebrow">AI-Powered Sustainability Consulting</div>
+        <h1>Turning sustainability ambitions into measurable results.</h1>
         <p>
-          We help organisations design and implement circular, low-carbon and ESG-aligned
-          strategies using cutting-edge research, data analytics and machine learning.
+          Gaisina Consulting Group helps organisations design and deliver circular,
+          low-carbon and resilient strategies for the built environment. We combine
+          whole-life carbon expertise with AI, data analytics and clear, board-ready
+          communication.
         </p>
         <div class="btn-row">
-          <a href="#contact" class="btn btn-primary">Book an introductory call</a>
-          <a href="#services" class="btn btn-outline">Explore our services</a>
+          <a href="#contact" class="btn btn-primary">Request a consultation</a>
+          <a href="#services" class="btn btn-outline">Explore services</a>
         </div>
       </div>
+
       <div class="hero-card">
-        <span class="pill">Our focus</span>
-        <h3>From whole-life carbon to circularity and resilience</h3>
-        <p>We translate complex technical analysis into clear decisions for boards,
-          project teams and investors.</p>
+        <span class="pill">What we deliver</span>
+        <h3>Sustainability intelligence for a changing world.</h3>
         <ul>
-          <li>Circular economy strategy for construction and real estate</li>
-          <li>Whole-life carbon and life cycle assessment (LCA)</li>
-          <li>ESG and climate resilience for assets and portfolios</li>
+          <li>Whole-life carbon modelling and optimisation</li>
+          <li>Circular economy strategies for projects and portfolios</li>
+          <li>ESG, climate risk and resilience assessments</li>
+          <li>AI-powered decision support and scenario analysis</li>
         </ul>
+        <div class="stats-row">
+          <div class="stat">Whole-life view of cost, carbon and risk.</div>
+          <div class="stat">Clear insights for designers, investors and boards.</div>
+        </div>
       </div>
     </div>
 
     <div class="pillars">
       <div class="card">
-        <h3>Circular Economy</h3>
-        <p>Embedding circular principles into design, construction and asset management so
-           materials and buildings stay in use for longer.</p>
-      </div>
-      <div class="card">
-        <h3>Whole-Life Carbon</h3>
-        <p>Measuring and reducing carbon across the full life cycle of assets, from early
-           design to end-of-life.</p>
-      </div>
-      <div class="card">
-        <h3>ESG &amp; Resilience</h3>
-        <p>Connecting environmental performance with social impact, governance and
-           climate resilience.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <h2>Who We Are</h2>
-    <p>
-      Tokbolat &amp; Gaisina is a boutique consultancy at the intersection of sustainable
-      construction, circular economy and artificial intelligence. We combine academic depth
-      with practical project experience to turn data into decisions and ambitions into
-      measurable impact.
-    </p>
-
-    <div class="two-col" style="margin-top:1.5rem;">
-      <div class="card">
-        <span class="pill">Co-founder</span>
-        <h3>Dr Serik Tokbolat</h3>
+        <span class="pill">Whole-Life Carbon</span>
+        <h3>Whole-life carbon &amp; LCA</h3>
         <p>
-          Serik is an Assistant Professor in Sustainability and Sustainable Construction
-          Engineering at the University of Nottingham (acting here in an independent
-          consulting capacity). His expertise includes sustainable construction, life
-          cycle assessment (LCA), building energy modelling, building certification and
-          circularity in construction.
-        </p>
-        <p>
-          He brings more than a decade of experience across academia and industry,
-          supporting partners in their transition to net-zero and circular built
-          environments.
+          Quantifying and reducing embodied and operational carbon across the full project
+          life cycle, from concept design to end-of-life.
         </p>
       </div>
-
       <div class="card">
-        <span class="pill">Co-founder</span>
-        <h3>Yenlik Gaisina, MPH</h3>
+        <span class="pill">Circular Economy</span>
+        <h3>Circularity in the built environment</h3>
         <p>
-          Yenlik is a sustainability, projects and data professional at the University of
-          Nottingham, experienced in coordination of complex initiatives, community
-          engagement and ESG-aligned strategy.
+          Applying circular design principles, material reuse and recovery strategies, and
+          circularity KPIs for buildings and infrastructure.
         </p>
+      </div>
+      <div class="card">
+        <span class="pill">ESG &amp; Resilience</span>
+        <h3>ESG, climate risk &amp; resilience</h3>
         <p>
-          She is currently studying Data Analytics, AI and Machine Learning at the
-          University of Cambridge, strengthening her ability to turn complex datasets into
-          clear, actionable insights for decision-makers.
+          Integrating environmental performance, social impact and governance with
+          forward-looking climate risk and resilience analysis.
         </p>
       </div>
     </div>
@@ -310,117 +393,132 @@
   <section id="services">
     <h2>Services</h2>
 
-    <h3>AI-Driven Sustainability Strategy</h3>
-    <p>We design sustainability strategies grounded in robust data science and machine
-       learning, tailored to your organisation’s context.</p>
-    <ul>
-      <li>Prioritisation of interventions based on impact, cost and feasibility</li>
-      <li>Whole-life carbon models for projects and portfolios</li>
-      <li>Scenario analysis for pathways to net zero and resilience</li>
-      <li>Alignment with ESG frameworks and reporting requirements</li>
-    </ul>
+    <div class="two-col" style="margin-top:1.5rem;">
+      <div>
+        <h3>Sustainability strategy &amp; advisory</h3>
+        <p>
+          Data-led sustainability strategies tailored to your organisational context,
+          regulatory landscape and asset portfolio.
+        </p>
+        <ul>
+          <li>Net-zero and decarbonisation roadmaps</li>
+          <li>Materiality and ESG integration</li>
+          <li>Portfolio-level risk and opportunity analysis</li>
+        </ul>
 
-    <h3>Full Sustainability Strategy for the Built Environment</h3>
-    <ul>
-      <li><strong>Carbon Footprinting</strong> – organisational, project and product footprints; LCA and whole-life carbon.</li>
-      <li><strong>Monitoring &amp; Reporting</strong> – KPIs, dashboards and data pipelines for ongoing performance tracking.</li>
-      <li><strong>Whole-Life Costing</strong> – integrating capital, operational and end-of-life costs with carbon and circularity.</li>
-      <li><strong>Circularity Assessment</strong> – material flows, reuse and recovery strategies, BIM-enabled circularity metrics.</li>
-      <li><strong>Resilience Assessment (Climate-Proofing)</strong> – climate risk screening and adaptation strategies.</li>
-      <li><strong>Certification &amp; Compliance Support</strong> – gap analysis, documentation and submission support for
-          building and environmental certification schemes.</li>
-    </ul>
+        <h3>Whole-life carbon assessment</h3>
+        <p>
+          Rigorous life cycle assessment (LCA) and whole-life carbon studies for projects
+          and programmes.
+        </p>
+        <ul>
+          <li>Embodied carbon estimation from early design</li>
+          <li>Operational energy and emissions modelling</li>
+          <li>Scenario testing and optimisation options</li>
+        </ul>
+      </div>
 
-    <h3>Specialist Topics</h3>
+      <div>
+        <h3>Circular economy solutions</h3>
+        <p>
+          Practical pathways to design out waste, keep materials in use and recover value.
+        </p>
+        <ul>
+          <li>Circularity assessment and KPIs</li>
+          <li>Material flow and reuse strategies</li>
+          <li>Integration with BIM and digital tools</li>
+        </ul>
+
+        <h3>Certification &amp; compliance support</h3>
+        <p>
+          Support with documentation, evidence and submissions for building and
+          sustainability certifications.
+        </p>
+        <ul>
+          <li>Gap analysis against selected standards</li>
+          <li>Technical evidence collation and review</li>
+          <li>Ongoing monitoring, reporting and updates</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2rem;">AI, machine learning &amp; data analytics</h3>
+    <p>
+      We apply advanced analytics to help you make faster, better sustainability
+      decisions.
+    </p>
     <ul>
-      <li>Net-zero roadmaps for construction and real estate</li>
-      <li>Integration of renewable and smart energy systems in buildings</li>
-      <li>Policy and strategy analysis for sustainable construction</li>
-      <li>Evidence reviews and white papers on circularity, life cycle and net-zero</li>
+      <li>Predictive models for carbon, cost and performance</li>
+      <li>Clustering to segment assets, projects or suppliers by risk and opportunity</li>
+      <li>Scenario simulations and sensitivity analysis</li>
+      <li>Dashboards and data visualisation for decision-makers</li>
     </ul>
   </section>
 
   <!-- APPROACH -->
   <section id="approach">
-    <h2>Our Approach</h2>
-    <h3>Data-Driven by Design</h3>
-    <p>
-      We start with your data – BIM models, energy use, material quantities, costs and ESG
-      indicators. Where data is missing, we help you design practical data-collection
-      strategies.
-    </p>
+    <h2>Our approach</h2>
 
-    <h3>AI, Machine Learning and Advanced Analytics</h3>
-    <p>Depending on your project, we use tools such as:</p>
-    <ul>
-      <li>Predictive models to forecast carbon, cost and performance</li>
-      <li>Clustering to segment assets or projects by risk and opportunity</li>
-      <li>Optimisation to identify high-impact, low-cost actions</li>
-      <li>Scenario simulations to explore “what if?” futures</li>
-    </ul>
-    <p>
-      We always translate technical outputs into clear language and visuals that boards,
-      investors and project teams can act on.
-    </p>
-
-    <h3>Collaboration &amp; Capacity Building</h3>
-    <p>
-      We co-create strategies with your teams and build internal capability so you can
-      sustain change long after the project ends.
-    </p>
+    <div class="media-block" style="margin-top:1.3rem;">
+      <div>
+        <h3>A clear, structured process.</h3>
+        <ol style="padding-left:1.1rem; color:var(--muted); margin-top:0.5rem;">
+          <li><strong>Discover</strong> – clarify objectives, constraints and data availability.</li>
+          <li><strong>Analyse</strong> – build models, baselines and scenarios.</li>
+          <li><strong>Recommend</strong> – prioritised actions, trade-offs and roadmaps.</li>
+          <li><strong>Implement</strong> – support integration into projects and processes.</li>
+          <li><strong>Monitor</strong> – KPIs, dashboards and continuous improvement.</li>
+        </ol>
+      </div>
+      <div class="media-placeholder">
+        Video / image placeholder – e.g. short loop of buildings, data or AI visuals.
+        <!-- You can replace this with:
+        <video src="assets/hero.mp4" autoplay muted loop playsinline></video>
+        or an <img> tag. -->
+      </div>
+    </div>
   </section>
 
-  <!-- TRAINING -->
-  <section id="training">
-    <h2>Training &amp; Workshops</h2>
+  <!-- SECTORS -->
+  <section id="sectors">
+    <h2>Sectors we work with</h2>
     <p>
-      We design tailored training for executives, project teams, sustainability
-      professionals and students.
+      Gaisina Consulting Group supports organisations across the built environment and
+      related sectors, including:
     </p>
     <ul>
-      <li>Circular economy in construction</li>
-      <li>Whole-life carbon and LCA in practice</li>
-      <li>ESG for infrastructure and real estate</li>
-      <li>Data-driven sustainability: dashboards, KPIs and decision-making</li>
-      <li>Introduction to AI and machine learning for sustainability teams</li>
+      <li>Construction and real estate developers</li>
+      <li>Infrastructure owners and operators</li>
+      <li>Universities and research-intensive organisations</li>
+      <li>Local authorities and public bodies</li>
+      <li>Manufacturing and industrial clients with complex assets</li>
     </ul>
-    <p>Formats: 2-hour masterclasses, half-day workshops or multi-session programmes
-       (online or in person).</p>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
     <h2>Contact</h2>
     <p>
-      If you would like to discuss a project, invite us to deliver training or simply
-      explore ideas, please get in touch.
+      If you would like to discuss a project, explore collaboration or request a
+      proposal, please get in touch using the form below or by email.
     </p>
     <p>
-      Email: <a href="mailto:info@example.com">info@example.com</a>
-      <!-- replace with your joint consultancy email -->
-    </p>
-    <p>
-      LinkedIn:
-      <!-- replace # with real profile URLs -->
-      <a href="#">Dr Serik Tokbolat</a> ·
-      <a href="#">Yenlik Gaisina, MPH</a>
+      Email: <a href="mailto:Gaisina.trainingconsultancy@gmail.com">Gaisina.trainingconsultancy@gmail.com</a>
     </p>
 
     <form class="contact-form">
-      <input type="text" name="name" placeholder="Your name">
-      <input type="text" name="organisation" placeholder="Organisation">
-      <input type="email" name="email" placeholder="Email">
+      <input type="text" name="name" placeholder="Your name" />
+      <input type="text" name="organisation" placeholder="Organisation" />
+      <input type="email" name="email" placeholder="Email" />
       <textarea name="message" placeholder="Tell us briefly about your project or question"></textarea>
-      <button class="btn btn-primary" type="submit">Send message</button>
+      <button class="btn btn-primary" type="submit">Submit enquiry</button>
     </form>
-    <!-- Note: you need backend / form service (e.g. Formspree, Netlify Forms) to make this form actually send emails -->
+    <!-- To make the form send emails, connect it to a service like Formspree, Netlify Forms or a simple backend. -->
   </section>
-
 </main>
 
 <footer>
-  © <span id="year"></span> Tokbolat &amp; Gaisina Sustainability Consulting. Independent of, but
-  collaborating with, academic institutions.
+  © <span id="year"></span> Gaisina Consulting Group. All rights reserved.
 </footer>
 
 <script>
