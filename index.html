@@ -126,14 +126,6 @@
       margin-bottom: 0.3rem;
     }
 
-    .hero-card {
-      background: var(--white);
-      border-radius: 1rem;
-      padding: 1.3rem 1.4rem;
-      box-shadow: 0 14px 32px rgba(12, 32, 60, 0.12);
-      border: 1px solid #d8e2f0;
-    }
-
     .pillars {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -158,12 +150,6 @@
       background: var(--accent-soft);
       color: var(--accent);
       margin-bottom: 0.4rem;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
     }
 
     .contact-form {
@@ -232,7 +218,7 @@
         </p>
       </div>
 
-      <!-- YOUR CANVA VIDEO -->
+      <!-- Canva video -->
       <video autoplay muted loop playsinline class="hero-video">
         <source src="gaisina-hero.mp4.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -248,20 +234,20 @@
     <div class="pillars">
       <div class="card">
         <span class="pill">Whole-Life Carbon</span>
-        <h3>Whole-life carbon & LCA</h3>
-        <p>Quantifying and reducing embodied and operational carbon.</p>
+        <h3>Whole-life carbon &amp; LCA</h3>
+        <p>Quantifying and reducing embodied and operational carbon across the full project life cycle.</p>
       </div>
 
       <div class="card">
         <span class="pill">Circular Economy</span>
         <h3>Circularity</h3>
-        <p>Applying circularity KPIs and strategies for reuse and optimisation.</p>
+        <p>Applying circular design principles, material reuse and recovery strategies, and circularity KPIs.</p>
       </div>
 
       <div class="card">
-        <span class="pill">ESG & Resilience</span>
-        <h3>ESG & Climate</h3>
-        <p>Forward-looking climate risk and resilience modelling.</p>
+        <span class="pill">ESG &amp; Resilience</span>
+        <h3>ESG &amp; climate risk</h3>
+        <p>Integrating environmental performance, social impact and governance with climate resilience analysis.</p>
       </div>
     </div>
   </section>
@@ -269,31 +255,41 @@
   <!-- APPROACH -->
   <section id="approach">
     <h2>Our Approach</h2>
-    <p>A structured, evidence-based process for sustainability decision-making.</p>
+    <p>A clear, evidence-based process for sustainability decision-making, combining domain expertise with advanced analytics and AI.</p>
   </section>
 
   <!-- SECTORS -->
   <section id="sectors">
-    <h2>Sectors We Work With</h2>
+    <h2>Sectors we work with</h2>
     <ul>
       <li>Construction and real estate developers</li>
       <li>Infrastructure owners and operators</li>
-      <li>Universities and research institutions</li>
-      <li>Public sector organisations</li>
+      <li>Universities and research-intensive organisations</li>
+      <li>Local authorities and public bodies</li>
+      <li>Manufacturing and industrial clients with complex assets</li>
     </ul>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: <a href="mailto:Gaisina.trainingconsultancy@gmail.com">Gaisina.trainingconsultancy@gmail.com</a></p>
+    <p>
+      If you would like to discuss a project, explore collaboration or request a proposal,
+      please get in touch.
+    </p>
+    <p>
+      Email:
+      <a href="mailto:Gaisina.trainingconsultancy@gmail.com">
+        Gaisina.trainingconsultancy@gmail.com
+      </a>
+    </p>
 
     <form class="contact-form">
-      <input type="text" placeholder="Your name" />
-      <input type="text" placeholder="Organisation" />
-      <input type="email" placeholder="Email" />
-      <textarea placeholder="Tell us briefly about your project"></textarea>
-      <button class="btn btn-primary" type="submit">Submit enquiry</button>
+      <input type="text" name="name" placeholder="Your name" />
+      <input type="text" name="organisation" placeholder="Organisation" />
+      <input type="email" name="email" placeholder="Email" />
+      <textarea name="message" placeholder="Tell us briefly about your project or question"></textarea>
+      <button type="submit" class="btn btn-primary">Submit enquiry</button>
     </form>
   </section>
 
