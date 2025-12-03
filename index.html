@@ -127,4 +127,185 @@
     }
 
     .hero-card {
-      background: var(
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 1.3rem 1.4rem;
+      box-shadow: 0 14px 32px rgba(12, 32, 60, 0.12);
+      border: 1px solid #d8e2f0;
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 0.9rem;
+      padding: 1rem 1.1rem;
+      box-shadow: 0 4px 14px rgba(15, 35, 52, 0.06);
+      border: 1px solid #e0e6f0;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.16rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      max-width: 520px;
+    }
+
+    footer {
+      border-top: 1px solid #dde3ea;
+      padding: 1.2rem 1.25rem 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: #f1f4f7;
+    }
+
+    /* Video styling */
+    .hero-video {
+      width: 100%;
+      border-radius: 0.8rem;
+    }
+
+    @media (max-width: 760px) {
+      header { position: static; }
+      .nav { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+      .hero { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo-mark">
+      <img src="logo.png.png" class="logo-img" alt="Gaisina Consulting Group Logo">
+      <div>
+        <div class="logo-text-main">Gaisina Consulting Group</div>
+        <div class="logo-text-sub">AI-Powered Sustainability Consulting</div>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#approach">Approach</a>
+      <a href="#sectors">Sectors</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">AI-Powered Sustainability Consulting</div>
+        <h1>Turning sustainability ambitions into measurable results.</h1>
+        <p>
+          Gaisina Consulting Group helps organisations design and deliver circular,
+          low-carbon and resilient strategies for the built environment.
+        </p>
+      </div>
+
+      <!-- YOUR CANVA VIDEO -->
+      <video autoplay muted loop playsinline class="hero-video">
+        <source src="gaisina-hero.mp4.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <h2>Services</h2>
+
+    <div class="pillars">
+      <div class="card">
+        <span class="pill">Whole-Life Carbon</span>
+        <h3>Whole-life carbon & LCA</h3>
+        <p>Quantifying and reducing embodied and operational carbon.</p>
+      </div>
+
+      <div class="card">
+        <span class="pill">Circular Economy</span>
+        <h3>Circularity</h3>
+        <p>Applying circularity KPIs and strategies for reuse and optimisation.</p>
+      </div>
+
+      <div class="card">
+        <span class="pill">ESG & Resilience</span>
+        <h3>ESG & Climate</h3>
+        <p>Forward-looking climate risk and resilience modelling.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section id="approach">
+    <h2>Our Approach</h2>
+    <p>A structured, evidence-based process for sustainability decision-making.</p>
+  </section>
+
+  <!-- SECTORS -->
+  <section id="sectors">
+    <h2>Sectors We Work With</h2>
+    <ul>
+      <li>Construction and real estate developers</li>
+      <li>Infrastructure owners and operators</li>
+      <li>Universities and research institutions</li>
+      <li>Public sector organisations</li>
+    </ul>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:Gaisina.trainingconsultancy@gmail.com">Gaisina.trainingconsultancy@gmail.com</a></p>
+
+    <form class="contact-form">
+      <input type="text" placeholder="Your name" />
+      <input type="text" placeholder="Organisation" />
+      <input type="email" placeholder="Email" />
+      <textarea placeholder="Tell us briefly about your project"></textarea>
+      <button class="btn btn-primary" type="submit">Submit enquiry</button>
+    </form>
+  </section>
+
+</main>
+
+<footer>
+  © <span id="year"></span> Gaisina Consulting Group. All rights reserved.
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
