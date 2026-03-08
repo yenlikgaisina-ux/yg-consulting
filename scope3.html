@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>ClarityScope3 — Scope 3 Emissions Calculator | Gaisina Consulting Group</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content="Free Scope 3 emissions calculator for UK construction SMEs. Calculate, report and reduce your supply chain carbon footprint using DEFRA 2024 factors.">
+<link rel="icon" type="image/png" href="logo.png.png">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<style>
+:root{--bg:#f7f9fb;--accent:#0a2342;--accent-soft:#e1e8f3;--accent-alt:#3a77b7;--text:#222;--muted:#555;--white:#fff;--green:#2D6A4F;--green-light:#52B788;--green-bg:#f0f9f4;--slate:#2D3748}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{position:sticky;top:0;z-index:10;background:rgba(247,249,251,.97);backdrop-filter:blur(8px);border-bottom:1px solid #dde3ea}
+.nav{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:.75rem 1.25rem}
+.logo-mark{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+.logo-img{height:42px;width:auto;margin-right:4px}
+.logo-text-main{font-weight:600;letter-spacing:.05em;font-size:.95rem;color:var(--accent);text-transform:uppercase}
+.logo-text-sub{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+nav a{margin-left:1rem;text-decoration:none;color:var(--muted);font-size:.92rem}nav a:hover{color:var(--accent)}
+main{max-width:1100px;margin:0 auto;padding:2rem 1.25rem 4rem}
+h1,h2,h3{margin-bottom:.75rem;color:var(--accent)}h1{font-size:2.15rem}h2{font-size:1.6rem}h3{font-size:1.2rem}
+p{margin-bottom:.7rem;color:var(--muted)}
+footer{border-top:1px solid #dde3ea;padding:1.2rem 1.25rem 1rem;text-align:center;font-size:.8rem;color:var(--muted);background:#f1f4f7}
+.tool-hero{text-align:center;padding:3rem 1rem 2rem;background:linear-gradient(135deg,#0a2342 0%,#1a4a7a 50%,#2D6A4F 100%);color:#fff;border-radius:1rem;margin-bottom:2rem}
+.tool-hero h1{color:#fff;font-size:2.4rem;margin-bottom:.5rem}
+.tool-hero .eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:.75rem;color:var(--green-light);margin-bottom:.5rem}
+.tool-hero p{color:rgba(255,255,255,.85);font-size:1.05rem;max-width:700px;margin:0 auto}
+.tool-badge{display:inline-block;background:var(--green-light);color:var(--accent);padding:.25rem .8rem;border-radius:999px;font-size:.75rem;font-weight:600;margin-bottom:.75rem;letter-spacing:.05em}
+.form-section{background:var(--white);border-radius:.9rem;padding:1.5rem;box-shadow:0 4px 14px rgba(15,35,52,.06);border:1px solid #e0e6f0;margin-bottom:1.5rem}
+.form-section h2{font-size:1.3rem;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.form-section h2 .cat-num{background:var(--green);color:#fff;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:600}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:.25rem}
+.form-group label{font-size:.85rem;font-weight:500;color:var(--slate)}
+.form-group input,.form-group select,.form-group textarea{padding:.6rem .8rem;border:1px solid #d1d5db;border-radius:.5rem;font-size:.9rem;font-family:inherit;background:var(--bg);transition:border-color .2s}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(45,106,79,.1)}
+.form-group .unit{font-size:.75rem;color:var(--muted)}
+.btn{padding:.7rem 1.5rem;border:none;border-radius:.5rem;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit}
+.btn-primary{background:var(--green);color:#fff}.btn-primary:hover{background:#245a42;transform:translateY(-1px);box-shadow:0 4px 12px rgba(45,106,79,.3)}
+.btn-secondary{background:var(--accent);color:#fff}.btn-secondary:hover{background:#081c33}
+.btn-outline{background:transparent;border:2px solid var(--green);color:var(--green)}.btn-outline:hover{background:var(--green);color:#fff}
+.btn-lg{padding:.9rem 2rem;font-size:1.05rem}.btn-block{width:100%;text-align:center}
+.email-gate{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:100;justify-content:center;align-items:center}
+.email-gate.active{display:flex}
+.email-modal{background:#fff;border-radius:1rem;padding:2.5rem;max-width:480px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.email-modal h2{margin-bottom:.5rem}.email-modal p{margin-bottom:1.5rem}
+.email-modal input{width:100%;padding:.75rem 1rem;border:2px solid #d1d5db;border-radius:.5rem;font-size:1rem;margin-bottom:1rem;font-family:inherit}
+.email-modal input:focus{border-color:var(--green);outline:none}
+#results-section{display:none}
+.results-header{text-align:center;padding:2rem 1rem;background:linear-gradient(135deg,#0a2342 0%,#1a4a7a 50%,#2D6A4F 100%);color:#fff;border-radius:1rem;margin-bottom:2rem}
+.results-header h2{color:#fff;font-size:1.4rem;margin-bottom:1rem}
+.big-number{font-size:3.5rem;font-weight:700;color:var(--green-light);line-height:1}
+.big-number-unit{font-size:1.2rem;color:rgba(255,255,255,.7);margin-top:.25rem}
+.score-gauge{width:180px;height:180px;border-radius:50%;background:conic-gradient(var(--green-light) calc(var(--score)*3.6deg),rgba(255,255,255,.15) 0);display:flex;align-items:center;justify-content:center;margin:1.5rem auto}
+.score-inner{width:140px;height:140px;border-radius:50%;background:var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-number{font-size:2.5rem;font-weight:700;color:var(--green-light)}
+.score-label{font-size:.75rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.1em}
+.insight-box{background:var(--green-bg);border:1px solid var(--green-light);border-radius:.75rem;padding:1.25rem;margin-bottom:1.5rem}
+.insight-box h3{color:var(--green);font-size:1rem;margin-bottom:.5rem}.insight-box p{color:var(--slate);margin-bottom:0}
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
+.result-card{background:var(--white);border-radius:.9rem;padding:1.5rem;box-shadow:0 4px 14px rgba(15,35,52,.06);border:1px solid #e0e6f0}
+.result-card h3{font-size:1.1rem;margin-bottom:1rem}
+.breakdown-table{width:100%;border-collapse:collapse;font-size:.9rem}
+.breakdown-table th{text-align:left;padding:.6rem .5rem;border-bottom:2px solid var(--accent);color:var(--accent);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+.breakdown-table td{padding:.6rem .5rem;border-bottom:1px solid #e0e6f0}
+.breakdown-table tr:last-child td{border-bottom:none;font-weight:600;color:var(--accent)}
+.breakdown-table .amount{text-align:right;font-variant-numeric:tabular-nums}.breakdown-table .pct{text-align:right;color:var(--muted);font-size:.85rem}
+.action-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin:2rem 0}
+.cta-box{background:linear-gradient(135deg,var(--green),#245a42);color:#fff;border-radius:.9rem;padding:2rem;text-align:center;margin-top:2rem}
+.cta-box h3{color:#fff;font-size:1.3rem;margin-bottom:.5rem}.cta-box p{color:rgba(255,255,255,.85);margin-bottom:1rem}
+.cta-box .btn{background:#fff;color:var(--green)}.cta-box .btn:hover{background:#f0f9f4}
+.disclaimer{font-size:.75rem;color:var(--muted);text-align:center;margin-top:2rem;padding:1rem;border-top:1px solid #e0e6f0}
+.progress-bar{display:flex;justify-content:center;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap}
+.progress-step{display:flex;align-items:center;gap:.25rem;font-size:.8rem;color:var(--muted)}
+.progress-step.active{color:var(--green);font-weight:600}
+.progress-dot{width:24px;height:24px;border-radius:50%;background:#e0e6f0;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;color:var(--muted)}
+.progress-step.active .progress-dot{background:var(--green);color:#fff}
+.progress-step.done .progress-dot{background:var(--green-light);color:#fff}
+.progress-line{width:30px;height:2px;background:#e0e6f0;align-self:center}
+@media(max-width:760px){header{position:static}.nav{flex-direction:column;align-items:flex-start;gap:.4rem}.form-grid{grid-template-columns:1fr}.results-grid{grid-template-columns:1fr}.big-number{font-size:2.5rem}.action-buttons{flex-direction:column;align-items:stretch}.tool-hero h1{font-size:1.8rem}}
+</style>
+</head>
+<body>
+<header>
+<div class="nav">
+<a href="/" class="logo-mark">
+<img src="logo.png.png" class="logo-img" alt="Gaisina Consulting Group Logo">
+<div>
+<div class="logo-text-main">Gaisina Consulting Group</div>
+<div class="logo-text-sub">AI-Powered Sustainability Consulting</div>
+</div>
+</a>
+<nav>
+<a href="/">Home</a>
+<a href="/#services">Services</a>
+<a href="/scope3" style="color:var(--green);font-weight:600">ClarityScope3</a>
+<a href="/#contact">Contact</a>
+</nav>
+</div>
+</header>
+<main>
+<div class="tool-hero">
+<div class="tool-badge">FREE TOOL</div>
+<div class="eyebrow">Scope 3 Emissions Calculator</div>
+<h1>ClarityScope3</h1>
+<p>The simple, affordable Scope 3 emissions calculator for UK construction SMEs. Calculate your supply chain carbon footprint and generate reports for your main contractor clients.</p>
+</div>
+<div id="form-section">
+<div class="progress-bar">
+<div class="progress-step active" id="step1-ind"><span class="progress-dot">1</span> Company</div><span class="progress-line"></span>
+<div class="progress-step" id="step2-ind"><span class="progress-dot">2</span> Materials</div><span class="progress-line"></span>
+<div class="progress-step" id="step3-ind"><span class="progress-dot">3</span> Transport</div><span class="progress-line"></span>
+<div class="progress-step" id="step4-ind"><span class="progress-dot">4</span> Waste</div><span class="progress-line"></span>
+<div class="progress-step" id="step5-ind"><span class="progress-dot">5</span> Travel</div><span class="progress-line"></span>
+<div class="progress-step" id="step6-ind"><span class="progress-dot">6</span> Commuting</div>
+</div>
+<div class="form-section" id="step1">
+<h2>Company Details</h2>
+<div class="form-grid">
+<div class="form-group"><label for="companyName">Company Name *</label><input type="text" id="companyName" placeholder="e.g. Smith & Sons Construction Ltd" required></div>
+<div class="form-group"><label for="contactEmail">Contact Email *</label><input type="email" id="contactEmail" placeholder="info@company.co.uk" required></div>
+<div class="form-group"><label for="reportStart">Reporting Period Start *</label><input type="date" id="reportStart" required></div>
+<div class="form-group"><label for="reportEnd">Reporting Period End *</label><input type="date" id="reportEnd" required></div>
+<div class="form-group"><label for="numEmployees">Number of Employees *</label><input type="number" id="numEmployees" min="1" placeholder="e.g. 15" required></div>
+</div>
+<div style="margin-top:1rem;text-align:right"><button class="btn btn-primary" onclick="nextStep(2)">Next: Materials →</button></div>
+</div>
+<div class="form-section" id="step2" style="display:none">
+<h2><span class="cat-num">1</span> Purchased Goods &amp; Materials</h2>
+<div class="form-grid">
+<div class="form-group"><label for="concrete">Concrete <span class="unit">(tonnes)</span></label><input type="number" id="concrete" min="0" step="0.1" value="0"></div>
+<div class="form-group"><label for="steel">Steel <span class="unit">(tonnes)</span></label><input type="number" id="steel" min="0" step="0.1" value="0"></div>
+<div class="form-group"><label for="timber">Timber <span class="unit">(m³, ≈ 0.5t/m³)</span></label><input type="number" id="timber" min="0" step="0.1" value="0"></div>
+<div class="form-group"><label for="brick">Brick / Masonry <span class="unit">(tonnes)</span></label><input type="number" id="brick" min="0" step="0.1" value="0"></div>
+<div class="form-group"><label for="insulation">Insulation <span class="unit">(m²)</span></label><input type="number" id="insulation" min="0" step="0.1" value="0"></div>
+<div class="form-group"><label for="otherMatDesc">Other Materials <span class="unit">(description)</span></label><input type="text" id="otherMatDesc" placeholder="e.g. Glass, Copper"></div>
+<div class="form-group"><label for="otherMatKg">Other Materials <span class="unit">(kg)</span></label><input type="number" id="otherMatKg" min="0" step="0.1" value="0"></div>
+</div>
+<div style="margin-top:1rem;display:flex;justify-content:space-between"><button class="btn btn-outline" onclick="nextStep(1)">← Back</button><button class="btn btn-primary" onclick="nextStep(3)">Next: Transport →</button></div>
+</div>
+<div class="form-section" id="step3" style="display:none">
+<h2><span class="cat-num">4</span> Upstream Transportation</h2>
+<div class="form-grid">
+<div class="form-group"><label for="deliveryCount">Number of Deliveries</label><input type="number" id="deliveryCount" min="0" value="0"></div>
+<div class="form-group"><label for="avgDistance">Avg Distance per Delivery <span class="unit">(km)</span></label><input type="number" id="avgDistance" min="0" step="0.1" value="0"></div>
+<div class="form-group"><label for="vehicleType">Primary Vehicle Type</label><select id="vehicleType"><option value="hgv">HGV</option><option value="van">Van</option><option value="rail">Rail freight</option></select></div>
+<div class="form-group"><label for="avgLoadTonnes">Avg Load per Delivery <span class="unit">(tonnes, HGV only)</span></label><input type="number" id="avgLoadTonnes" min="0" step="0.1" value="10"></div>
+</div>
+<div style="margin-top:1rem;display:flex;justify-content:space-between"><button class="btn btn-outline" onclick="nextStep(2)">← Back</button><button class="btn btn-primary" onclick="nextStep(4)">Next: Waste →</button></div>
+</div>
+<div class="form-section" id="step4" style="display:none">
+<h2><span class="cat-num">5</span> Waste Generated in Operations</h2>
+<div class="form-grid">
+<div class="form-group"><label for="generalWaste">General Waste <span class="unit">(tonnes)</span></label><input type="number" id="generalWaste" min="0" step="0.1" value="0"></div>
+<div class="form-group"><label for="constructionWaste">Construction Waste <span class="unit">(tonnes)</span></label><input type="number" id="constructionWaste" min="0" step="0.1" value="0"></div>
+<div class="form-group"><label for="recycledPct">Percentage Recycled <span class="unit">(%)</span></label><input type="number" id="recycledPct" min="0" max="100" value="0"></div>
+</div>
+<div style="margin-top:1rem;display:flex;justify-content:space-between"><button class="btn btn-outline" onclick="nextStep(3)">← Back</button><button class="btn btn-primary" onclick="nextStep(5)">Next: Business Travel →</button></div>
+</div>
+<div class="form-section" id="step5" style="display:none">
+<h2><span class="cat-num">6</span> Business Travel</h2>
+<div class="form-grid">
+<div class="form-group"><label for="carPetrolMiles">Car — Petrol <span class="unit">(miles)</span></label><input type="number" id="carPetrolMiles" min="0" value="0"></div>
+<div class="form-group"><label for="carDieselMiles">Car — Diesel <span class="unit">(miles)</span></label><input type="number" id="carDieselMiles" min="0" value="0"></div>
+<div class="form-group"><label for="carElectricMiles">Car — Electric <span class="unit">(miles)</span></label><input type="number" id="carElectricMiles" min="0" value="0"></div>
+<div class="form-group"><label for="railMiles">Rail <span class="unit">(miles)</span></label><input type="number" id="railMiles" min="0" value="0"></div>
+<div class="form-group"><label for="shortHaulFlights">Short-Haul Flights <span class="unit">(number)</span></label><input type="number" id="shortHaulFlights" min="0" value="0"></div>
+<div class="form-group"><label for="longHaulFlights">Long-Haul Flights <span class="unit">(number)</span></label><input type="number" id="longHaulFlights" min="0" value="0"></div>
+</div>
+<div style="margin-top:1rem;display:flex;justify-content:space-between"><button class="btn btn-outline" onclick="nextStep(4)">← Back</button><button class="btn btn-primary" onclick="nextStep(6)">Next: Commuting →</button></div>
+</div>
+<div class="form-section" id="step6" style="display:none">
+<h2><span class="cat-num">7</span> Employee Commuting</h2>
+<div class="form-grid">
+<div class="form-group"><label for="commuteDistance">Avg Commute Distance <span class="unit">(km, one way)</span></label><input type="number" id="commuteDistance" min="0" step="0.1" value="15"></div>
+<div class="form-group"><label for="commuteMode">Primary Transport Mode</label><select id="commuteMode"><option value="petrol">Car — Petrol</option><option value="diesel">Car — Diesel</option><option value="electric">Car — Electric</option><option value="rail">Rail / Public Transport</option><option value="cycle">Cycling / Walking</option></select></div>
+<div class="form-group"><label for="workingDays">Working Days per Year</label><input type="number" id="workingDays" min="0" value="230"></div>
+</div>
+<div style="margin-top:1.5rem;text-align:center"><button class="btn btn-primary btn-lg" onclick="calculateEmissions()" style="min-width:280px">Calculate Scope 3 Emissions</button></div>
+</div>
+</div>
+<div class="email-gate" id="emailGate">
+<div class="email-modal">
+<div class="tool-badge" style="background:var(--accent-soft);color:var(--accent)">ALMOST THERE</div>
+<h2>Your report is ready!</h2>
+<p>Enter your email to view your Scope 3 emissions report and download the PDF.</p>
+<input type="email" id="gateEmail" placeholder="your@email.co.uk">
+<button class="btn btn-primary btn-block" onclick="unlockResults()">View My Report</button>
+<p style="font-size:.75rem;color:var(--muted);margin-top:.75rem">We respect your privacy. No spam, ever.</p>
+</div>
+</div>
+<div id="results-section">
+<div class="results-header">
+<div class="eyebrow" style="color:var(--green-light)">Your Scope 3 Emissions Report</div>
+<h2 id="resultsCompany"></h2>
+<p id="resultsPeriod" style="color:rgba(255,255,255,.7);margin-bottom:1.5rem"></p>
+<div class="big-number" id="totalEmissions">0.00</div>
+<div class="big-number-unit">tCO2e total Scope 3 emissions</div>
+<div class="score-gauge" id="scoreGauge" style="--score:0">
+<div class="score-inner">
+<div class="score-number" id="clarityScore">0</div>
+<div class="score-label">ClarityScore</div>
+</div>
+</div>
+<p id="scoreExplain" style="color:rgba(255,255,255,.7);font-size:.85rem;max-width:500px;margin:0 auto"></p>
+</div>
+<div class="insight-box" id="insightBox"><h3>Key Insight</h3><p id="insightText"></p></div>
+<div class="results-grid">
+<div class="result-card"><h3>Category Breakdown</h3><canvas id="breakdownChart" height="280"></canvas></div>
+<div class="result-card"><h3>Emissions by Category</h3>
+<table class="breakdown-table" id="breakdownTable"><thead><tr><th>Category</th><th class="amount">tCO2e</th><th class="pct">%</th></tr></thead><tbody></tbody></table>
+</div>
+</div>
+<div class="result-card" style="margin-bottom:1.5rem"><h3>Benchmark Comparison</h3><p style="margin-bottom:1rem" id="benchmarkText"></p><canvas id="benchmarkChart" height="120"></canvas></div>
+<div class="result-card" style="margin-bottom:1.5rem"><h3>Top 3 Recommendations to Reduce Emissions</h3><div id="recommendations" style="padding:.5rem 0"></div></div>
+<div class="action-buttons">
+<button class="btn btn-primary btn-lg" onclick="downloadPDF()">Download PDF Report</button>
+<button class="btn btn-secondary btn-lg" onclick="shareResults()">Share Results</button>
+<button class="btn btn-outline btn-lg" onclick="resetForm()">New Calculation</button>
+</div>
+<div class="cta-box">
+<h3>Need help reducing your Scope 3 emissions?</h3>
+<p>Our sustainability consultants can help you develop a practical decarbonisation roadmap tailored to your business.</p>
+<a href="/#contact" class="btn" style="text-decoration:none;display:inline-block">Contact Us</a>
+</div>
+<div class="disclaimer">
+<strong>Disclaimer:</strong> This tool provides estimates based on DEFRA 2024 emission factors. Results should be reviewed by a qualified sustainability professional. Gaisina.ai accepts no liability for decisions made based on these estimates.<br>Data sources: DEFRA UK Government GHG Conversion Factors 2024.
+</div>
+</div>
+</main>
+<footer>© <span id="year"></span> Gaisina Consulting Group. All rights reserved.</footer>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+var EF={concrete:.103,steel:1.46,timber:.47,brick:.24,insulation:3.4,otherMat:.5,hgv:.1252,van:.2247,railFreight:.028,wasteGeneral:.467,wasteConstruction:.021,carPetrol:.1704,carDiesel:.1654,carElectric:.0531,rail:.0035,shortHaulFlight:.255,longHaulFlight:.195,shortHaulDist:1500,longHaulDist:6000};
+var MILES_TO_KM=1.60934,BENCHMARK_PER_EMP=45;
+var calculatedData=null,breakdownChartInst=null,benchmarkChartInst=null;
+
+function nextStep(n){
+if(n===2){var cn=document.getElementById('companyName').value.trim();var ce=document.getElementById('contactEmail').value.trim();var rs=document.getElementById('reportStart').value;var re=document.getElementById('reportEnd').value;var ne=document.getElementById('numEmployees').value;if(!cn||!ce||!rs||!re||!ne){alert('Please fill in all required company details.');return;}}
+for(var i=1;i<=6;i++){document.getElementById('step'+i).style.display=i===n?'block':'none';var ind=document.getElementById('step'+i+'-ind');ind.classList.remove('active','done');if(i<n)ind.classList.add('done');if(i===n)ind.classList.add('active');}
+window.scrollTo({top:200,behavior:'smooth'});
+}
+
+function calculateEmissions(){
+var v=function(id){return parseFloat(document.getElementById(id).value)||0;};
+var cat1=v('concrete')*1000*EF.concrete+v('steel')*1000*EF.steel+v('timber')*500*EF.timber+v('brick')*1000*EF.brick+v('insulation')*EF.insulation+v('otherMatKg')*EF.otherMat;
+var del=v('deliveryCount'),dist=v('avgDistance'),vt=document.getElementById('vehicleType').value,load=v('avgLoadTonnes');
+var cat4=0;if(vt==='hgv')cat4=del*dist*load*EF.hgv;else if(vt==='van')cat4=del*dist*EF.van;else cat4=del*dist*load*EF.railFreight;
+var rp=v('recycledPct')/100;var cat5=v('generalWaste')*1000*(1-rp)*EF.wasteGeneral+v('constructionWaste')*1000*(1-rp)*EF.wasteConstruction;
+var cat6=v('carPetrolMiles')*MILES_TO_KM*EF.carPetrol+v('carDieselMiles')*MILES_TO_KM*EF.carDiesel+v('carElectricMiles')*MILES_TO_KM*EF.carElectric+v('railMiles')*MILES_TO_KM*EF.rail+v('shortHaulFlights')*EF.shortHaulDist*EF.shortHaulFlight+v('longHaulFlights')*EF.longHaulDist*EF.longHaulFlight;
+var ne=v('numEmployees'),cd=v('commuteDistance'),cm=document.getElementById('commuteMode').value,wd=v('workingDays');
+var cef=0;if(cm==='petrol')cef=EF.carPetrol;else if(cm==='diesel')cef=EF.carDiesel;else if(cm==='electric')cef=EF.carElectric;else if(cm==='rail')cef=EF.rail;
+var cat7=ne*cd*2*wd*cef;
+var cats=[{name:'Purchased Goods & Materials',value:cat1/1000,cat:'Cat 1'},{name:'Upstream Transportation',value:cat4/1000,cat:'Cat 4'},{name:'Waste in Operations',value:cat5/1000,cat:'Cat 5'},{name:'Business Travel',value:cat6/1000,cat:'Cat 6'},{name:'Employee Commuting',value:cat7/1000,cat:'Cat 7'}];
+var total=cats.reduce(function(s,c){return s+c.value;},0);
+var bm=ne*BENCHMARK_PER_EMP;
+var score=Math.max(0,Math.min(100,Math.round(100-(total/bm)*50)));
+calculatedData={company:document.getElementById('companyName').value.trim(),email:document.getElementById('contactEmail').value.trim(),periodStart:document.getElementById('reportStart').value,periodEnd:document.getElementById('reportEnd').value,numEmployees:ne,categories:cats,total:total,benchmark:bm,score:score};
+document.getElementById('emailGate').classList.add('active');
+document.getElementById('gateEmail').value=calculatedData.email;
+}
+</script>
+<script>
+function unlockResults(){
+var email=document.getElementById('gateEmail').value.trim();
+if(!email||email.indexOf('@')<0){alert('Please enter a valid email address.');return;}
+document.getElementById('emailGate').classList.remove('active');
+document.getElementById('form-section').style.display='none';
+document.getElementById('results-section').style.display='block';
+window.scrollTo({top:0,behavior:'smooth'});
+renderResults();
+}
+function formatDate(s){if(!s)return'';var d=new Date(s);return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}
+
+function renderResults(){
+var d=calculatedData;
+document.getElementById('resultsCompany').textContent=d.company;
+document.getElementById('resultsPeriod').textContent='Reporting period: '+formatDate(d.periodStart)+' \u2014 '+formatDate(d.periodEnd);
+document.getElementById('totalEmissions').textContent=d.total.toFixed(2);
+document.getElementById('clarityScore').textContent=d.score;
+document.getElementById('scoreGauge').style.setProperty('--score',d.score);
+var sd='';if(d.score>=80)sd='Excellent \u2014 your emissions are well below the UK construction SME average for your company size.';
+else if(d.score>=60)sd='Good \u2014 below average but room for improvement.';
+else if(d.score>=40)sd='Average \u2014 roughly in line with typical UK construction SMEs.';
+else sd='Needs attention \u2014 your emissions are above the UK construction SME average.';
+document.getElementById('scoreExplain').textContent=sd;
+var sorted=d.categories.slice().sort(function(a,b){return b.value-a.value;});
+var hi=sorted[0],pct=d.total>0?((hi.value/d.total)*100).toFixed(0):0;
+var bd=((d.total-d.benchmark)/d.benchmark*100).toFixed(0);
+var ih='';
+if(d.total<=d.benchmark)ih='Your total Scope 3 emissions of <strong>'+d.total.toFixed(2)+' tCO2e</strong> are <strong>'+Math.abs(bd)+'% below</strong> the benchmark for a '+d.numEmployees+'-person firm. Largest source: <strong>'+hi.name+'</strong> ('+pct+'%).';
+else ih='Your total Scope 3 emissions of <strong>'+d.total.toFixed(2)+' tCO2e</strong> are <strong>'+Math.abs(bd)+'% above</strong> the benchmark for a '+d.numEmployees+'-person firm. Focus on <strong>'+hi.name+'</strong> ('+pct+'%) for maximum impact.';
+document.getElementById('insightText').innerHTML=ih;
+document.getElementById('benchmarkText').innerHTML='Your emissions: <strong>'+d.total.toFixed(2)+' tCO2e</strong> | Benchmark ('+d.numEmployees+' employees): <strong>'+d.benchmark.toFixed(0)+' tCO2e</strong>';
+var tb=document.querySelector('#breakdownTable tbody');tb.innerHTML='';
+d.categories.forEach(function(c){var p=d.total>0?((c.value/d.total)*100).toFixed(1):'0.0';tb.innerHTML+='<tr><td>'+c.cat+' \u2014 '+c.name+'</td><td class="amount">'+c.value.toFixed(3)+'</td><td class="pct">'+p+'%</td></tr>';});
+tb.innerHTML+='<tr><td><strong>Total</strong></td><td class="amount"><strong>'+d.total.toFixed(3)+'</strong></td><td class="pct"><strong>100%</strong></td></tr>';
+renderBreakdownChart(d);renderBenchmarkChart(d);renderRecommendations(d);
+}
+
+function renderBreakdownChart(d){
+var ctx=document.getElementById('breakdownChart').getContext('2d');
+if(breakdownChartInst)breakdownChartInst.destroy();
+breakdownChartInst=new Chart(ctx,{type:'bar',data:{labels:d.categories.map(function(c){return c.cat;}),datasets:[{label:'tCO2e',data:d.categories.map(function(c){return parseFloat(c.value.toFixed(3));}),backgroundColor:['#2D6A4F','#3a77b7','#52B788','#0a2342','#f39c12'],borderRadius:6,barPercentage:.6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,title:{display:true,text:'tCO2e'},grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}}});
+}
+
+function renderBenchmarkChart(d){
+var ctx=document.getElementById('benchmarkChart').getContext('2d');
+if(benchmarkChartInst)benchmarkChartInst.destroy();
+benchmarkChartInst=new Chart(ctx,{type:'bar',data:{labels:['Your Emissions','UK SME Benchmark'],datasets:[{data:[parseFloat(d.total.toFixed(2)),parseFloat(d.benchmark.toFixed(0))],backgroundColor:[d.total<=d.benchmark?'#52B788':'#e74c3c','#3a77b7'],borderRadius:6,barPercentage:.5}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,title:{display:true,text:'tCO2e'},grid:{color:'rgba(0,0,0,.05)'}},y:{grid:{display:false}}}}});
+}
+</script>
+<script>
+function renderRecommendations(d){
+var sorted=d.categories.slice().sort(function(a,b){return b.value-a.value;});
+var recs=[];
+sorted.forEach(function(c){if(recs.length>=3)return;
+if(c.cat==='Cat 1'&&c.value>0)recs.push({icon:'\uD83C\uDFD7\uFE0F',title:'Reduce material emissions',text:'Consider low-carbon concrete (e.g. GGBS blends) and recycled steel. Certified sustainable timber can also lower your Cat 1 footprint.'});
+if(c.cat==='Cat 4'&&c.value>0)recs.push({icon:'\uD83D\uDE9A',title:'Optimise logistics',text:'Consolidate deliveries, choose closer suppliers, and consider rail freight for heavy materials where feasible.'});
+if(c.cat==='Cat 5'&&c.value>0)recs.push({icon:'\u267B\uFE0F',title:'Improve waste management',text:'Increase recycling rate and implement a Site Waste Management Plan. Target 90%+ diversion from landfill.'});
+if(c.cat==='Cat 6'&&c.value>0)recs.push({icon:'\u2708\uFE0F',title:'Reduce business travel',text:'Prioritise video conferencing, use rail instead of flights for UK trips, and transition fleet to electric.'});
+if(c.cat==='Cat 7'&&c.value>0)recs.push({icon:'\uD83D\uDEB4',title:'Support green commuting',text:'Offer cycle-to-work scheme, provide EV charging, and enable flexible working to reduce commute journeys.'});
+});
+var defs=[{icon:'\uD83D\uDCCA',title:'Start measuring regularly',text:'Run this calculator quarterly to track trends and spot where reduction efforts pay off.'},{icon:'\uD83E\uDD1D',title:'Engage your supply chain',text:'Ask top suppliers for their carbon data and choose lower-carbon alternatives.'},{icon:'\uD83C\uDFAF',title:'Set science-based targets',text:'Consider SBTi-aligned targets to demonstrate credible climate action to clients.'}];
+while(recs.length<3)recs.push(defs[recs.length]);
+var html=recs.slice(0,3).map(function(r,i){return '<div style="display:flex;gap:1rem;align-items:flex-start;padding:.75rem 0;'+(i<2?'border-bottom:1px solid #e0e6f0':'')+'"><div style="font-size:1.5rem">'+r.icon+'</div><div><strong style="color:var(--accent)">'+r.title+'</strong><p style="margin:.25rem 0 0;font-size:.9rem">'+r.text+'</p></div></div>';}).join('');
+document.getElementById('recommendations').innerHTML=html;
+}
+</script>
+<script>
+function downloadPDF(){
+var jsPDF=window.jspdf.jsPDF;
+var doc=new jsPDF('p','mm','a4');
+var d=calculatedData;
+var w=doc.internal.pageSize.getWidth();
+var y=15;
+doc.setFillColor(10,35,66);doc.rect(0,0,w,35,'F');
+doc.setTextColor(255,255,255);doc.setFontSize(18);doc.setFont('helvetica','bold');
+doc.text('ClarityScope3',15,15);
+doc.setFontSize(10);doc.setFont('helvetica','normal');
+doc.text('Scope 3 Emissions Report',15,22);
+doc.text('Prepared for: '+d.company,15,29);
+doc.text(formatDate(d.periodStart)+' \u2014 '+formatDate(d.periodEnd),w-15,22,{align:'right'});
+doc.text(d.numEmployees+' employees',w-15,29,{align:'right'});
+y=45;doc.setTextColor(34,34,34);
+doc.setFontSize(12);doc.setFont('helvetica','bold');doc.text('Executive Summary',15,y);y+=7;
+doc.setFontSize(9);doc.setFont('helvetica','normal');
+var bd=((d.total-d.benchmark)/d.benchmark*100).toFixed(0);
+var sorted=d.categories.slice().sort(function(a,b){return b.value-a.value;});
+var hi=sorted[0];
+var st=d.company+' generated '+d.total.toFixed(2)+' tCO2e of Scope 3 emissions during the reporting period. ';
+if(d.total<=d.benchmark)st+='This is '+Math.abs(bd)+'% below the UK construction SME benchmark of '+d.benchmark.toFixed(0)+' tCO2e for a '+d.numEmployees+'-person firm. ';
+else st+='This is '+Math.abs(bd)+'% above the UK construction SME benchmark of '+d.benchmark.toFixed(0)+' tCO2e for a '+d.numEmployees+'-person firm. ';
+st+='The largest emission source was '+hi.name+', contributing '+(d.total>0?((hi.value/d.total)*100).toFixed(0):0)+'% of the total.';
+var ss=doc.splitTextToSize(st,w-30);doc.text(ss,15,y);y+=ss.length*4.5+5;
+doc.setFillColor(240,249,244);doc.roundedRect(15,y,w-30,25,3,3,'F');
+doc.setFontSize(22);doc.setFont('helvetica','bold');doc.setTextColor(45,106,79);
+doc.text(d.total.toFixed(2)+' tCO2e',25,y+12);
+doc.setFontSize(9);doc.setFont('helvetica','normal');doc.text('Total Scope 3 Emissions',25,y+19);
+doc.setFontSize(22);doc.setFont('helvetica','bold');doc.text(d.score+'/100',w-25,y+12,{align:'right'});
+doc.setFontSize(9);doc.setFont('helvetica','normal');doc.text('ClarityScore',w-25,y+19,{align:'right'});
+y+=33;doc.setTextColor(34,34,34);
+doc.setFontSize(12);doc.setFont('helvetica','bold');doc.text('Category Breakdown',15,y);y+=3;
+var td=d.categories.map(function(c){return[c.cat+' \u2014 '+c.name,c.value.toFixed(3),(d.total>0?((c.value/d.total)*100).toFixed(1):'0.0')+'%'];});
+td.push(['Total',d.total.toFixed(3),'100%']);
+doc.autoTable({startY:y,head:[['Category','tCO2e','% of Total']],body:td,theme:'grid',styles:{fontSize:8,cellPadding:3},headStyles:{fillColor:[10,35,66],textColor:255,fontStyle:'bold'},columnStyles:{1:{halign:'right'},2:{halign:'right'}},margin:{left:15,right:15},didParseCell:function(data){if(data.row.index===td.length-1){data.cell.styles.fontStyle='bold';data.cell.styles.fillColor=[240,249,244];}}});
+y=doc.lastAutoTable.finalY+10;
+doc.setFontSize(12);doc.setFont('helvetica','bold');doc.text('Benchmark Comparison',15,y);y+=7;
+doc.setFontSize(9);doc.setFont('helvetica','normal');
+doc.text('Your emissions: '+d.total.toFixed(2)+' tCO2e',15,y);y+=5;
+doc.text('UK SME Benchmark ('+d.numEmployees+' employees): '+d.benchmark.toFixed(0)+' tCO2e',15,y);y+=10;
+var mx=Math.max(d.total,d.benchmark),bw=w-60;
+var yw=(d.total/mx)*bw,bew=(d.benchmark/mx)*bw;
+doc.setFillColor(d.total<=d.benchmark?82:231,d.total<=d.benchmark?183:76,d.total<=d.benchmark?136:60);
+doc.roundedRect(30,y,Math.max(yw,2),8,2,2,'F');
+doc.setFontSize(7);doc.text('You: '+d.total.toFixed(2),30+Math.max(yw,2)+3,y+6);y+=13;
+doc.setFillColor(58,119,183);doc.roundedRect(30,y,Math.max(bew,2),8,2,2,'F');
+doc.text('Benchmark: '+d.benchmark.toFixed(0),30+Math.max(bew,2)+3,y+6);y+=18;
+doc.setFontSize(12);doc.setFont('helvetica','bold');doc.text('ClarityScore: '+d.score+'/100',15,y);y+=7;
+doc.setFontSize(9);doc.setFont('helvetica','normal');
+var stxt='';if(d.score>=80)stxt='Excellent \u2014 well below average.';else if(d.score>=60)stxt='Good \u2014 below average with room to improve.';else if(d.score>=40)stxt='Average \u2014 in line with typical UK construction SMEs.';else stxt='Needs attention \u2014 above average. Prioritise recommendations below.';
+var ssp=doc.splitTextToSize(stxt,w-30);doc.text(ssp,15,y);y+=ssp.length*4.5+8;
+if(y>230){doc.addPage();y=20;}
+doc.setFontSize(12);doc.setFont('helvetica','bold');doc.text('Top 3 Recommendations',15,y);y+=7;
+doc.setFontSize(9);doc.setFont('helvetica','normal');
+var recT=document.getElementById('recommendations').querySelectorAll('strong');
+var recP=document.getElementById('recommendations').querySelectorAll('p');
+for(var i=0;i<Math.min(3,recT.length);i++){doc.setFont('helvetica','bold');doc.text((i+1)+'. '+recT[i].textContent,15,y);y+=5;doc.setFont('helvetica','normal');var rt=doc.splitTextToSize(recP[i].textContent,w-30);doc.text(rt,15,y);y+=rt.length*4.5+4;}
+y=doc.internal.pageSize.getHeight()-25;
+doc.setDrawColor(200,200,200);doc.line(15,y,w-15,y);y+=5;
+doc.setFontSize(7);doc.setTextColor(120,120,120);
+doc.text('Methodology: Calculations based on DEFRA UK Government GHG Conversion Factors 2024.',15,y);y+=4;
+doc.text('Disclaimer: This tool provides estimates. Results should be reviewed by a qualified sustainability professional.',15,y);y+=4;
+doc.text('Gaisina.ai accepts no liability for decisions made based on these estimates.',15,y);y+=4;
+doc.text('Data sources: DEFRA UK Government GHG Conversion Factors 2024.',15,y);y+=6;
+doc.setFontSize(8);doc.setTextColor(45,106,79);doc.setFont('helvetica','bold');
+doc.text('Report prepared using ClarityScope3 by Gaisina.ai',w/2,y,{align:'center'});
+doc.save('ClarityScope3_Report_'+d.company.replace(/[^a-zA-Z0-9]/g,'_')+'.pdf');
+}
+
+function shareResults(){
+var d=calculatedData;
+var t=d.company+' Scope 3 Emissions Report\nTotal: '+d.total.toFixed(2)+' tCO2e\nClarityScore: '+d.score+'/100\n\nCalculated using ClarityScope3 by Gaisina.ai\nhttps://gaisina.co.uk/scope3';
+if(navigator.share){navigator.share({title:'ClarityScope3 Report',text:t,url:'https://gaisina.co.uk/scope3'}).catch(function(){});}
+else{navigator.clipboard.writeText(t).then(function(){alert('Results copied to clipboard!');}).catch(function(){prompt('Copy to share:',t);});}
+}
+
+function resetForm(){
+document.getElementById('results-section').style.display='none';
+document.getElementById('form-section').style.display='block';
+nextStep(1);window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+  </html>
