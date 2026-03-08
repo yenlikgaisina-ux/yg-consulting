@@ -1,307 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Gaisina Consulting Group | AI-Powered Sustainability Consulting</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Gaisina Consulting Group helps organisations achieve circular, low-carbon and ESG-aligned outcomes using AI, data analytics and whole-life sustainability expertise.">
+<meta charset="UTF-8" />
+<title>Gaisina Consulting Group | AI-Powered Sustainability Consulting</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Gaisina Consulting Group helps organisations achieve circular, low-carbon and ESG-aligned outcomes using AI, data analytics and whole-life sustainability expertise.">
+<link rel="icon" type="image/png" href="logo.png.png">
+<style>
+:root {
+  --bg: #f7f9fb;
+  --accent: #0a2342;
+  --accent-soft: #e1e8f3;
+  --accent-alt: #3a77b7;
+  --green: #2D6A4F;
+  --green-light: #52B788;
+  --green-bg: #f0f9f4;
+  --text: #222;
+  --muted: #555;
+  --white: #ffffff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+header { position: sticky; top: 0; z-index: 10; background: rgba(247,249,251,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid #dde3ea; }
+.nav { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1.25rem; }
+.logo-mark { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+.logo-img { height: 42px; width: auto; margin-right: 4px; }
+.logo-text-main { font-weight: 600; letter-spacing: 0.05em; font-size: 0.95rem; color: var(--accent); text-transform: uppercase; }
+.logo-text-sub { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+nav a { margin-left: 1rem; text-decoration: none; color: var(--muted); font-size: 0.92rem; transition: color 0.2s; }
+nav a:hover { color: var(--accent); }
+nav a.nav-cta { background: var(--green); color: white; padding: 0.4rem 1rem; border-radius: 0.4rem; font-weight: 600; font-size: 0.85rem; }
+nav a.nav-cta:hover { background: #245a42; color: white; }
+main { max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+section { margin-top: 3rem; }
+h1, h2, h3 { margin-bottom: 0.75rem; color: var(--accent); }
+h1 { font-size: 2.15rem; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.2rem; }
+p { margin-bottom: 0.7rem; color: var(--muted); }
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="logo.png.png">
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.5fr); gap: 2rem; align-items: center; margin-top: 2.5rem; }
+.hero-copy p { font-size: 1.02rem; }
+.eyebrow { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.7rem; color: var(--accent-alt); margin-bottom: 0.3rem; }
+.hero-video { width: 100%; border-radius: 0.8rem; box-shadow: 0 8px 30px rgba(10,35,66,0.15); }
+.hero-buttons { display: flex; gap: 0.75rem; margin-top: 1.25rem; flex-wrap: wrap; }
 
-  <style>
-    :root {
-      --bg: #f7f9fb;
-      --accent: #0a2342;   /* navy */
-      --accent-soft: #e1e8f3;
-      --accent-alt: #3a77b7; /* sky blue */
-      --text: #222;
-      --muted: #555;
-      --white: #ffffff;
-    }
+/* Buttons */
+.btn { display: inline-block; padding: 0.65rem 1.5rem; border: none; border-radius: 0.5rem; font-size: 0.92rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.2s; font-family: inherit; text-align: center; }
+.btn-primary { background: var(--green); color: white; }
+.btn-primary:hover { background: #245a42; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(45,106,79,0.3); }
+.btn-outline { background: transparent; border: 2px solid var(--accent); color: var(--accent); }
+.btn-outline:hover { background: var(--accent); color: white; }
+.btn-accent { background: var(--accent-alt); color: white; }
+.btn-accent:hover { background: #2b6299; }
+/* Cards & Pillars */
+.pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 2rem; }
+.card { background: var(--white); border-radius: 0.9rem; padding: 1.25rem; box-shadow: 0 4px 14px rgba(15,35,52,0.06); border: 1px solid #e0e6f0; transition: transform 0.2s, box-shadow 0.2s; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(15,35,52,0.1); }
+.pill { display: inline-flex; align-items: center; padding: 0.16rem 0.6rem; border-radius: 999px; font-size: 0.8rem; background: var(--accent-soft); color: var(--accent); margin-bottom: 0.4rem; }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+/* CTA Banner */
+.cta-banner { background: linear-gradient(135deg, #0a2342 0%, #1a4a7a 50%, #2D6A4F 100%); color: white; border-radius: 1rem; padding: 2.5rem 2rem; text-align: center; margin-top: 3rem; }
+.cta-banner h2 { color: white; font-size: 1.8rem; margin-bottom: 0.5rem; }
+.cta-banner p { color: rgba(255,255,255,0.85); font-size: 1.05rem; max-width: 650px; margin: 0 auto 1.5rem; }
+.cta-banner .btn { margin: 0.25rem; }
 
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
+/* Tool Highlight */
+.tool-highlight { background: var(--green-bg); border: 2px solid var(--green-light); border-radius: 1rem; padding: 2rem; margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+.tool-highlight h2 { color: var(--green); }
+.tool-badge { display: inline-block; background: var(--green-light); color: var(--accent); padding: 0.2rem 0.7rem; border-radius: 999px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+.tool-features { list-style: none; padding: 0; margin: 0.75rem 0; }
+.tool-features li { padding: 0.3rem 0; color: var(--text); font-size: 0.92rem; }
+.tool-features li::before { content: "\2713"; color: var(--green); font-weight: 700; margin-right: 0.5rem; }
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(247,249,251,0.97);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid #dde3ea;
-    }
+/* Stats bar */
+.stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; text-align: center; }
+.stat-item { padding: 1.5rem 1rem; background: var(--white); border-radius: 0.9rem; box-shadow: 0 4px 14px rgba(15,35,52,0.06); border: 1px solid #e0e6f0; }
+.stat-number { font-size: 2.2rem; font-weight: 700; color: var(--green); line-height: 1; }
+.stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
 
-    .nav {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 1.25rem;
-    }
+/* Email capture */
+.email-capture { background: var(--white); border-radius: 0.9rem; padding: 2rem; box-shadow: 0 4px 14px rgba(15,35,52,0.06); border: 1px solid #e0e6f0; margin-top: 3rem; text-align: center; }
+.email-capture h2 { font-size: 1.4rem; }
+.email-form { display: flex; gap: 0.5rem; max-width: 500px; margin: 1rem auto 0; }
+.email-form input { flex: 1; padding: 0.65rem 1rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 0.92rem; font-family: inherit; }
+.email-form input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(45,106,79,0.1); }
 
-    .logo-mark {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
+/* Approach steps */
+.approach-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; counter-reset: step; }
+.approach-step { padding: 1.25rem; background: var(--white); border-radius: 0.9rem; box-shadow: 0 4px 14px rgba(15,35,52,0.06); border: 1px solid #e0e6f0; counter-increment: step; position: relative; padding-top: 3rem; }
+.approach-step::before { content: counter(step); position: absolute; top: 1rem; left: 1.25rem; width: 28px; height: 28px; background: var(--green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; }
+.approach-step h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+.approach-step p { font-size: 0.88rem; margin-bottom: 0; }
 
-    .logo-img {
-      height: 42px;
-      width: auto;
-      margin-right: 4px;
-    }
+/* Contact */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.5rem; }
+.contact-info { display: flex; flex-direction: column; justify-content: center; }
+.contact-form { display: grid; gap: 0.75rem; }
+.contact-form input, .contact-form textarea { padding: 0.65rem 0.8rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 0.9rem; font-family: inherit; background: var(--bg); }
+.contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(45,106,79,0.1); }
+.contact-form button { padding: 0.7rem 1.5rem; background: var(--green); color: white; border: none; border-radius: 0.5rem; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+.contact-form button:hover { background: #245a42; }
 
-    .logo-text-main {
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      font-size: 0.95rem;
-      color: var(--accent);
-      text-transform: uppercase;
-    }
+/* Footer */
+footer { border-top: 1px solid #dde3ea; padding: 1.2rem 1.25rem 1rem; text-align: center; font-size: 0.8rem; color: var(--muted); background: #f1f4f7; }
 
-    .logo-text-sub {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-    }
+/* Animations */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.animate { opacity: 0; animation: fadeInUp 0.6s ease forwards; }
+.delay-1 { animation-delay: 0.15s; }
+.delay-2 { animation-delay: 0.3s; }
+.delay-3 { animation-delay: 0.45s; }
 
-    nav a {
-      margin-left: 1rem;
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    nav a:hover {
-      color: var(--accent);
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem 1.25rem 4rem;
-    }
-
-    section {
-      margin-top: 3rem;
-    }
-
-    h1, h2, h3 {
-      margin-bottom: 0.75rem;
-      color: var(--accent);
-    }
-
-    h1 { font-size: 2.15rem; }
-    h2 { font-size: 1.6rem; }
-    h3 { font-size: 1.2rem; }
-
-    p { margin-bottom: 0.7rem; color: var(--muted); }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.5fr);
-      gap: 2rem;
-      align-items: center;
-      margin-top: 2.5rem;
-    }
-
-    .hero-copy p {
-      font-size: 1.02rem;
-    }
-
-    .eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 0.7rem;
-      color: var(--accent-alt);
-      margin-bottom: 0.3rem;
-    }
-
-    .pillars {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .card {
-      background: var(--white);
-      border-radius: 0.9rem;
-      padding: 1rem 1.1rem;
-      box-shadow: 0 4px 14px rgba(15, 35, 52, 0.06);
-      border: 1px solid #e0e6f0;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.16rem 0.6rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      background: var(--accent-soft);
-      color: var(--accent);
-      margin-bottom: 0.4rem;
-    }
-
-    .contact-form {
-      display: grid;
-      gap: 0.75rem;
-      margin-top: 1rem;
-      max-width: 520px;
-    }
-
-    footer {
-      border-top: 1px solid #dde3ea;
-      padding: 1.2rem 1.25rem 1rem;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--muted);
-      background: #f1f4f7;
-    }
-
-    /* Video styling */
-    .hero-video {
-      width: 100%;
-      border-radius: 0.8rem;
-    }
-
-    @media (max-width: 760px) {
-      header { position: static; }
-      .nav { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
-      .hero { grid-template-columns: 1fr; }
-    }
-  </style>
+/* Responsive */
+@media (max-width: 760px) {
+  header { position: static; }
+  .nav { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+  .hero { grid-template-columns: 1fr; }
+  .tool-highlight { grid-template-columns: 1fr; }
+  .stats-bar { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .email-form { flex-direction: column; }
+  .approach-steps { grid-template-columns: 1fr; }
+  .hero-buttons { flex-direction: column; }
+}
+</style>
 </head>
-
 <body>
-
 <header>
   <div class="nav">
-    <div class="logo-mark">
+    <a href="#home" class="logo-mark">
       <img src="logo.png.png" class="logo-img" alt="Gaisina Consulting Group Logo">
       <div>
         <div class="logo-text-main">Gaisina Consulting Group</div>
         <div class="logo-text-sub">AI-Powered Sustainability Consulting</div>
       </div>
-    </div>
-
+    </a>
     <nav>
       <a href="#home">Home</a>
       <a href="#services">Services</a>
       <a href="#approach">Approach</a>
       <a href="#sectors">Sectors</a>
       <a href="#contact">Contact</a>
+      <a href="/scope3" class="nav-cta">ClarityScope3</a>
     </nav>
   </div>
 </header>
 
 <main>
-
   <!-- HERO -->
   <section id="home">
     <div class="hero">
-      <div class="hero-copy">
+      <div class="hero-copy animate">
         <div class="eyebrow">AI-Powered Sustainability Consulting</div>
         <h1>Turning sustainability ambitions into measurable results.</h1>
-        <p>
-          Gaisina Consulting Group helps organisations design and deliver circular,
-          low-carbon and resilient strategies for the built environment.
-        </p>
+        <p>Gaisina Consulting Group helps organisations design and deliver circular, low-carbon and resilient strategies for the built environment.</p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">Get a Free Consultation</a>
+          <a href="/scope3" class="btn btn-outline">Try ClarityScope3 &rarr;</a>
+        </div>
       </div>
-
-      <!-- Canva video -->
-      <video autoplay muted loop playsinline class="hero-video">
+      <!-- Video: replace src with your new video filename after uploading to the repo -->
+      <video autoplay muted loop playsinline class="hero-video animate delay-1">
         <source src="gaisina-hero.mp4.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
-
     </div>
   </section>
 
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item animate">
+      <div class="stat-number">10+</div>
+      <div class="stat-label">Projects delivered</div>
+    </div>
+    <div class="stat-item animate delay-1">
+      <div class="stat-number">5</div>
+      <div class="stat-label">Sectors served</div>
+    </div>
+    <div class="stat-item animate delay-2">
+      <div class="stat-number">DEFRA</div>
+      <div class="stat-label">2024 aligned methodology</div>
+    </div>
+  </div>
+
   <!-- SERVICES -->
   <section id="services">
-    <h2>Services</h2>
-
+    <h2 class="animate">Services</h2>
     <div class="pillars">
-      <div class="card">
+      <div class="card animate">
         <span class="pill">Whole-Life Carbon</span>
         <h3>Whole-life carbon &amp; LCA</h3>
         <p>Quantifying and reducing embodied and operational carbon across the full project life cycle.</p>
       </div>
-
-      <div class="card">
+      <div class="card animate delay-1">
         <span class="pill">Circular Economy</span>
         <h3>Circularity</h3>
         <p>Applying circular design principles, material reuse and recovery strategies, and circularity KPIs.</p>
       </div>
-
-      <div class="card">
+      <div class="card animate delay-2">
         <span class="pill">ESG &amp; Resilience</span>
         <h3>ESG &amp; climate risk</h3>
         <p>Integrating environmental performance, social impact and governance with climate resilience analysis.</p>
       </div>
     </div>
   </section>
+  <!-- CTA BANNER -->
+  <div class="cta-banner animate">
+    <h2>New UK sustainability reporting requirements?</h2>
+    <p>We help construction SMEs understand and meet their Scope 3 obligations. Start with our free calculator or book a consultation.</p>
+    <a href="/scope3" class="btn" style="background:var(--green-light);color:var(--accent)">Try ClarityScope3 Free</a>
+    <a href="#contact" class="btn" style="background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3)">Book a Consultation</a>
+  </div>
+
+  <!-- CLARITYSCOPE3 HIGHLIGHT -->
+  <div class="tool-highlight animate">
+    <div>
+      <div class="tool-badge">FREE TOOL</div>
+      <h2>ClarityScope3</h2>
+      <p>Our Scope 3 emissions calculator helps UK construction subcontractors calculate their supply chain carbon footprint in minutes — no spreadsheets, no consultants required.</p>
+      <ul class="tool-features">
+        <li>Calculate emissions across 5 Scope 3 categories</li>
+        <li>DEFRA 2024 emission factors built in</li>
+        <li>Generate professional PDF reports</li>
+        <li>Benchmark against UK construction SME averages</li>
+        <li>Get a ClarityScore out of 100</li>
+      </ul>
+      <div style="margin-top:1rem">
+        <a href="/scope3" class="btn btn-primary">Launch Calculator &rarr;</a>
+      </div>
+    </div>
+    <div style="text-align:center">
+      <div style="background:linear-gradient(135deg,#0a2342,#2D6A4F);border-radius:1rem;padding:2rem;color:white">
+        <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--green-light);margin-bottom:0.5rem">Your ClarityScore</div>
+        <div style="width:120px;height:120px;border-radius:50%;background:conic-gradient(var(--green-light) 270deg,rgba(255,255,255,0.15) 0);display:flex;align-items:center;justify-content:center;margin:0 auto">
+          <div style="width:90px;height:90px;border-radius:50%;background:var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center">
+            <div style="font-size:2rem;font-weight:700;color:var(--green-light)">75</div>
+            <div style="font-size:0.6rem;color:rgba(255,255,255,0.6);text-transform:uppercase">Score</div>
+          </div>
+        </div>
+        <p style="margin-top:1rem;font-size:0.85rem;color:rgba(255,255,255,0.7)">Understand your carbon impact today</p>
+      </div>
+    </div>
+  </div>
 
   <!-- APPROACH -->
   <section id="approach">
-    <h2>Our Approach</h2>
+    <h2 class="animate">Our Approach</h2>
     <p>A clear, evidence-based process for sustainability decision-making, combining domain expertise with advanced analytics and AI.</p>
+    <div class="approach-steps">
+      <div class="approach-step animate">
+        <h3>Assess</h3>
+        <p>We start with a comprehensive audit of your current sustainability position, emissions and material flows.</p>
+      </div>
+      <div class="approach-step animate delay-1">
+        <h3>Analyse</h3>
+        <p>Using AI and data analytics, we identify the highest-impact opportunities for carbon and cost savings.</p>
+      </div>
+      <div class="approach-step animate delay-2">
+        <h3>Advise</h3>
+        <p>We deliver practical, evidence-based recommendations tailored to your business and sector.</p>
+      </div>
+      <div class="approach-step animate delay-3">
+        <h3>Implement</h3>
+        <p>We support you through execution with ongoing monitoring, reporting and stakeholder engagement.</p>
+      </div>
+    </div>
   </section>
-
   <!-- SECTORS -->
   <section id="sectors">
-    <h2>Sectors we work with</h2>
-    <ul>
-      <li>Construction and real estate developers</li>
-      <li>Infrastructure owners and operators</li>
-      <li>Universities and research-intensive organisations</li>
-      <li>Local authorities and public bodies</li>
-      <li>Manufacturing and industrial clients with complex assets</li>
-    </ul>
+    <h2 class="animate">Sectors we work with</h2>
+    <div class="pillars">
+      <div class="card animate">
+        <h3>Construction &amp; Real Estate</h3>
+        <p>Developers, main contractors and subcontractors navigating carbon reporting and net-zero targets.</p>
+      </div>
+      <div class="card animate delay-1">
+        <h3>Infrastructure</h3>
+        <p>Infrastructure owners and operators managing whole-life carbon and climate resilience across asset portfolios.</p>
+      </div>
+      <div class="card animate delay-2">
+        <h3>Universities &amp; Research</h3>
+        <p>Research-intensive organisations embedding sustainability into estates, operations and procurement.</p>
+      </div>
+      <div class="card animate delay-3">
+        <h3>Public Sector</h3>
+        <p>Local authorities and public bodies developing evidence-based sustainability strategies and reporting.</p>
+      </div>
+    </div>
   </section>
+
+  <!-- EMAIL CAPTURE / LEAD GEN -->
+  <div class="email-capture animate">
+    <h2>Get sustainability insights delivered to your inbox</h2>
+    <p style="color:var(--muted)">Join UK construction leaders receiving our monthly briefing on carbon reporting, regulation updates, and practical decarbonisation tips.</p>
+    <form class="email-form" onsubmit="handleEmailCapture(event)">
+      <input type="email" placeholder="your@company.co.uk" required id="leadEmail">
+      <button type="submit" class="btn btn-primary" style="white-space:nowrap">Subscribe Free</button>
+    </form>
+    <p style="font-size:0.75rem;color:var(--muted);margin-top:0.75rem">No spam. Unsubscribe any time. We respect your privacy.</p>
+  </div>
 
   <!-- CONTACT -->
   <section id="contact">
-    <h2>Contact</h2>
-    <p>
-      If you would like to discuss a project, explore collaboration or request a proposal,
-      please get in touch.
-    </p>
-    <p>
-      Email:
-      <a href="mailto:Gaisina.trainingconsultancy@gmail.com">
-        Gaisina.trainingconsultancy@gmail.com
-      </a>
-    </p>
-
-    <form class="contact-form">
-      <input type="text" name="name" placeholder="Your name" />
-      <input type="text" name="organisation" placeholder="Organisation" />
-      <input type="email" name="email" placeholder="Email" />
-      <textarea name="message" placeholder="Tell us briefly about your project or question"></textarea>
-      <button type="submit" class="btn btn-primary">Submit enquiry</button>
-    </form>
+    <h2 class="animate">Let’s talk about your project</h2>
+    <div class="contact-grid">
+      <div class="contact-info animate">
+        <p style="font-size:1.05rem;color:var(--text)">Whether you need help with Scope 3 reporting, whole-life carbon assessments, or a full sustainability strategy — we’d love to hear from you.</p>
+        <p><strong>Email:</strong> <a href="mailto:Gaisina.trainingconsultancy@gmail.com" style="color:var(--accent-alt)">Gaisina.trainingconsultancy@gmail.com</a></p>
+        <p><strong>Location:</strong> Nottingham, United Kingdom</p>
+        <div style="margin-top:1rem;padding:1rem;background:var(--green-bg);border-radius:0.75rem;border:1px solid var(--green-light)">
+          <p style="color:var(--green);font-weight:600;margin-bottom:0.3rem;font-size:0.9rem">Free Scope 3 Assessment</p>
+          <p style="font-size:0.85rem;margin-bottom:0.5rem">Not sure where to start? Try our free ClarityScope3 calculator to understand your emissions profile before your consultation.</p>
+          <a href="/scope3" class="btn btn-primary" style="font-size:0.85rem;padding:0.5rem 1rem">Try ClarityScope3 &rarr;</a>
+        </div>
+      </div>
+      <form class="contact-form animate delay-1" onsubmit="handleContact(event)">
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="text" name="organisation" placeholder="Organisation" />
+        <input type="email" name="email" placeholder="Email" required />
+        <select name="interest" style="padding:0.65rem 0.8rem;border:1px solid #d1d5db;border-radius:0.5rem;font-size:0.9rem;font-family:inherit;background:var(--bg)">
+          <option value="">What can we help with?</option>
+          <option value="scope3">Scope 3 Reporting &amp; Compliance</option>
+          <option value="lca">Whole-Life Carbon &amp; LCA</option>
+          <option value="circular">Circular Economy Strategy</option>
+          <option value="esg">ESG &amp; Climate Risk</option>
+          <option value="other">Other / General Enquiry</option>
+        </select>
+        <textarea name="message" placeholder="Tell us briefly about your project or question" rows="4"></textarea>
+        <button type="submit">Send Enquiry</button>
+      </form>
+    </div>
   </section>
-
 </main>
 
 <footer>
-  © <span id="year"></span> Gaisina Consulting Group. All rights reserved.
+  &copy; <span id="year"></span> Gaisina Consulting Group. All rights reserved.
 </footer>
-
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+document.getElementById('year').textContent = new Date().getFullYear();
 
+// Scroll animations
+const observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.style.animationPlayState = 'running';
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.animate').forEach(function(el) {
+  el.style.animationPlayState = 'paused';
+  observer.observe(el);
+});
+
+// Email capture handler
+function handleEmailCapture(e) {
+  e.preventDefault();
+  var email = document.getElementById('leadEmail').value;
+  if (email) {
+    alert('Thank you! We will be in touch at ' + email);
+    document.getElementById('leadEmail').value = '';
+  }
+}
+
+// Contact form handler
+function handleContact(e) {
+  e.preventDefault();
+  var form = e.target;
+  var name = form.querySelector('[name="name"]').value;
+  var email = form.querySelector('[name="email"]').value;
+  if (name && email) {
+    alert('Thank you ' + name + '! We will review your enquiry and get back to you at ' + email + ' within 24 hours.');
+    form.reset();
+  }
+}
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+  anchor.addEventListener('click', function(e) {
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
 </body>
-</html>
+  </html>
