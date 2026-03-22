@@ -102,6 +102,12 @@ footer { border-top: 1px solid #dde3ea; padding: 1.2rem 1.25rem 1rem; text-align
   .about-strip { grid-template-columns: 1fr; }
   .projects { grid-template-columns: 1fr; }
 }
+
+/* Project result stats */
+.project-stats { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.85rem 0 0.85rem; }
+.stat-chip { display: inline-flex; flex-direction: column; align-items: center; background: var(--bg); border: 1px solid #dde3ea; border-radius: 0.5rem; padding: 0.4rem 0.75rem; min-width: 90px; }
+.stat-chip .stat-num { font-size: 1.05rem; font-weight: 700; color: var(--accent); line-height: 1.1; }
+.stat-chip .stat-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.2; text-align: center; margin-top: 0.1rem; }
 </style>
 </head>
 <body>
@@ -163,6 +169,12 @@ footer { border-top: 1px solid #dde3ea; padding: 1.2rem 1.25rem 1rem; text-align
       <h3>Building Energy Anomaly Detection</h3>
       <p class="project-question">"Which residential buildings in England and Wales are anomalously energy-inefficient, and how can local authorities prioritise them for retrofit intervention?"</p>
       <p>Applied IQR, One-Class SVM and Isolation Forest to UK Government EPC open data to identify outlier properties &mdash; calibrated to flag 1&ndash;5% of records as high-priority retrofit candidates. Includes PCA visualisation and stakeholder recommendations.</p>
+      <div class="project-stats">
+        <div class="stat-chip"><span class="stat-num">1M+</span><span class="stat-label">EPC Records Analysed</span></div>
+        <div class="stat-chip"><span class="stat-num">2%</span><span class="stat-label">Flagged as Anomalous</span></div>
+        <div class="stat-chip"><span class="stat-num">3</span><span class="stat-label">Models Compared</span></div>
+        <div class="stat-chip"><span class="stat-num">IF</span><span class="stat-label">Best Approach</span></div>
+      </div>
       <div class="project-tags">
         <span class="project-tag">Python</span>
         <span class="project-tag">IQR</span>
@@ -186,6 +198,12 @@ footer { border-top: 1px solid #dde3ea; padding: 1.2rem 1.25rem 1rem; text-align
       <h3>NHS Referral Demand Forecasting</h3>
       <p class="project-question">"Can referral demand be predicted 4&ndash;8 weeks ahead to support workforce and capacity planning in NHS outpatient services?"</p>
       <p>Time series forecasting of NHS outpatient referral volumes using ARIMA and LSTM models. Targets healthcare analytics roles in the NHS and public sector.</p>
+      <div class="project-stats">
+        <div class="stat-chip"><span class="stat-num">2.4%</span><span class="stat-label">ARIMA MAPE</span></div>
+        <div class="stat-chip"><span class="stat-num">8 wk</span><span class="stat-label">Forecast Horizon</span></div>
+        <div class="stat-chip"><span class="stat-num">ARIMA</span><span class="stat-label">Recommended Model</span></div>
+        <div class="stat-chip"><span class="stat-num">vs LSTM</span><span class="stat-label">Challenger Tested</span></div>
+      </div>
       <div class="project-tags">
         <span class="project-tag">Python</span>
         <span class="project-tag">ARIMA</span>
