@@ -9,7 +9,7 @@
 <style>
 :root {
   --bg: #f7f9fb;
-  --accent: #0a2342;
+  --accent: #0a2342
   --accent-soft: #e1e8f3;
   --accent-alt: #3a77b7;
   --green: #2D6A4F;
@@ -271,21 +271,30 @@ footer { border-top: 1px solid #dde3ea; padding: 1.2rem 1.25rem 1rem; text-align
     <!-- Project 4 placeholder -->
     <div class="project-card">
       <div class="project-meta">
-        <span class="project-status status-progress">In Progress</span>
-        <span class="project-domain">Sustainability</span>
+        <span class="project-status status-complete">Complete</span>
+        <span class="project-domain">Sustainability &amp; Carbon Economics</span>
       </div>
       <h3>Construction Scope 3 Cost Forecasting</h3>
-      <p class="project-question">"How will Scope 3 emissions-related cost pressures evolve for UK construction subcontractors over the next 12&ndash;24 months?"</p>
-      <p>Forecasting cost pressures from Scope 3 reporting obligations using ONS and HMRC trade data. Directly connected to the ClarityScope3 product strategy.</p>
+      <p class="project-question">&ldquo;How will Scope 3 emissions-related cost pressures evolve for UK construction subcontractors over the next 12&ndash;24 months?&rdquo;</p>
+      <p>Forecasting carbon-driven cost pressures using ONS PPI and HMRC trade data. SARIMA, ETS Holt-Winters and OLS regression forecast material price indices; a Monte Carlo simulation (N=10,000) quantifies financial exposure for a representative &pound;50M subcontractor.</p>
+      <div class="project-stats">
+        <div class="stat-chip"><span class="stat-num">+7.1%</span><span class="stat-label">Steel PPI Uplift</span></div>
+        <div class="stat-chip"><span class="stat-num">&pound;127k</span><span class="stat-label">P50 Exposure</span></div>
+        <div class="stat-chip"><span class="stat-num">3</span><span class="stat-label">Models Used</span></div>
+        <div class="stat-chip"><span class="stat-num">10k</span><span class="stat-label">MC Simulations</span></div>
+      </div>
       <div class="project-tags">
         <span class="project-tag">Python</span>
-        <span class="project-tag">ARIMA</span>
-        <span class="project-tag">Plotly</span>
+        <span class="project-tag">SARIMA</span>
+        <span class="project-tag">ETS</span>
+        <span class="project-tag">Monte Carlo</span>
         <span class="project-tag">ONS Data</span>
+        <span class="project-tag">UK ETS</span>
         <span class="project-tag">Scope 3</span>
       </div>
       <div class="project-links">
-        <span class="btn-sm btn-soon">Coming Soon</span>
+        <a href="https://github.com/yenlikgaisina-ux/construction-scope3-cost-forecasting" target="_blank" class="btn-sm btn-github">GitHub &rarr;</a>
+        <a href="https://colab.research.google.com/github/yenlikgaisina-ux/construction-scope3-cost-forecasting/blob/main/notebook/scope3_cost_forecasting.ipynb" target="_blank" class="btn-sm btn-notebook">Notebook</a>
       </div>
     </div>
 
