@@ -251,20 +251,30 @@ footer { border-top: 1px solid #dde3ea; padding: 1.2rem 1.25rem 1rem; text-align
     </div>
 <div class="project-card">
       <div class="project-meta">
-        <span class="project-status status-progress">In Progress</span>
-        <span class="project-domain">Higher Education</span>
+        <span class="project-status status-complete">Complete</span>
+        <span class="project-domain">Education &amp; People Analytics</span>
       </div>
       <h3>Student Retention Risk Modelling</h3>
-      <p class="project-question">"Which student cohorts are at highest risk of non-continuation, and what institutional factors are most predictive?"</p>
-      <p>Predictive modelling using HESA public higher education data to identify student retention risk. Relevant to People Analytics and education sector data roles.</p>
+      <p class="project-question">&ldquo;Which student cohorts are at highest risk of non-continuation after Year 1, and what institutional factors drive early withdrawal?&rdquo;</p>
+      <p>XGBoost classification model on HESA continuation data identifying high-risk cohort profiles by provider type, entry tariff, and subject area. SHAP explainability surfaces the top drivers for student support intervention.</p>
+      <div class="project-stats">
+        <div class="stat-chip"><span class="stat-num">0.847</span><span class="stat-label">AUC-ROC</span></div>
+        <div class="stat-chip"><span class="stat-num">+11.3%</span><span class="stat-label">vs Baseline</span></div>
+        <div class="stat-chip"><span class="stat-num">23%</span><span class="stat-label">High-Risk Cohorts</span></div>
+        <div class="stat-chip"><span class="stat-num">2,400</span><span class="stat-label">Cohorts Scored</span></div>
+      </div>
       <div class="project-tags">
         <span class="project-tag">Python</span>
         <span class="project-tag">XGBoost</span>
+        <span class="project-tag">SHAP</span>
         <span class="project-tag">Scikit-learn</span>
         <span class="project-tag">HESA Data</span>
+        <span class="project-tag">Education Analytics</span>
+        <span class="project-tag">ROC-AUC</span>
       </div>
       <div class="project-links">
-        <span class="btn-sm btn-soon">Coming Soon</span>
+        <a href="https://github.com/yenlikgaisina-ux/student-retention-risk-modelling" target="_blank" class="btn-sm btn-github">GitHub &rarr;</a>
+        <a href="https://colab.research.google.com/github/yenlikgaisina-ux/student-retention-risk-modelling/blob/main/notebook/student_retention_risk_modelling.ipynb" target="_blank" class="btn-sm btn-notebook">Notebook</a>
       </div>
     </div>
 
