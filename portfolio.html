@@ -90,7 +90,7 @@ p { margin-bottom: 0.7rem; color: var(--muted); }
 .coming-soon h2 { font-size: 1.2rem; margin-bottom: 1rem; }
 .coming-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
 .coming-item { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.75rem; border-radius: 0.5rem; background: var(--bg); }
-.coming-icon { font-size: 1.3rem; line-height: 1; margin-top: 0.1rem; }
+.coming-icon { font-size: 1.3rem; line-height: 1; margin-top: 0.35rem; }
 .coming-item h4 { font-size: 0.88rem; color: var(--accent); margin-bottom: 0.2rem; }
 .coming-item p { font-size: 0.8rem; margin: 0; }
 
@@ -105,7 +105,7 @@ footer { border-top: 1px solid #dde3ea; padding: 1.2rem 1.25rem 1rem; text-align
 
 /* Project result stats */
 .project-stats { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.85rem 0 0.85rem; }
-.stat-chip { display: inline-flex; flex-direction: column; align-items: center; background: var(--bg); border: 1px solid #dde3ea; border-radius: 0.5rem; padding: 0.4rem 0.75rem; min-width: 90px; }
+.stat-chip { display: inline-flex; flex-direction: column; align-items: center; background: var(--bg); border: 1px solid #dde3ea; border-radius: 0.5rem; padding: 0.5rem 0.75rem; min-width: 90px; }
 .stat-chip .stat-num { font-size: 1.05rem; font-weight: 700; color: var(--accent); line-height: 1.1; }
 .stat-chip .stat-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.2; text-align: center; margin-top: 0.1rem; }
 </style>
@@ -169,7 +169,7 @@ footer { border-top: 1px solid #dde3ea; padding: 1.2rem 1.25rem 1rem; text-align
       </div>
       <h3>Building Energy Anomaly Detection</h3>
       <p class="project-question">&ldquo;Which homes in England and Wales are anomalously energy-inefficient, and how can local authorities prioritise them for retrofit intervention?&rdquo;</p>
-      <p>Three anomaly detection methods (IQR, Isolation Forest, One-Class SVM) applied to ~1 million UK EPC records to flag the highest-risk properties for retrofit. Isolation Forest gave the strongest separation; ~78% overlap with the statistical baseline provides a high-confidence shortlist for action.</p>
+      <p>Applied IQR, Isolation Forest, and One-Class SVM to ~1 million UK EPC records to identify likely retrofit priorities. Isolation Forest produced the clearest separation, with ~78% agreement against the statistical baseline.</p>
       <div class="project-stats">
         <div class="stat-chip"><span class="stat-num">1M+</span><span class="stat-label">EPC Records Analysed</span></div>
         <div class="stat-chip"><span class="stat-num">~2%</span><span class="stat-label">Flagged Anomalous</span></div>
@@ -197,7 +197,7 @@ footer { border-top: 1px solid #dde3ea; padding: 1.2rem 1.25rem 1rem; text-align
         <span class="project-domain">Healthcare</span>
       </div>
       <h3>NHS Referral Demand Forecasting</h3>
-      <p class="project-question">"Can referral demand be predicted 4&ndash;8 weeks ahead to support workforce and capacity planning in NHS outpatient services?"</p>
+      <p class="project-question">&ldquo;Can referral demand be predicted 4&ndash;8 weeks ahead to support workforce and capacity planning in NHS outpatient services?&rdquo;</p>
       <p>Time series forecasting of NHS outpatient referral volumes using ARIMA and LSTM models. Targets healthcare analytics roles in the NHS and public sector.</p>
       <div class="project-stats">
         <div class="stat-chip"><span class="stat-num">2.4%</span><span class="stat-label">ARIMA MAPE</span></div>
@@ -224,11 +224,11 @@ footer { border-top: 1px solid #dde3ea; padding: 1.2rem 1.25rem 1rem; text-align
     <div class="project-card">
       <div class="project-meta">
         <span class="project-status status-complete">Complete</span>
-        <span class="project-domain">SUSTAINABILITY &amp; AI</span>
+        <span class="project-domain">Sustainability &amp; AI</span>
       </div>
       <h3>Construction Sustainability Research Agent</h3>
       <p class="project-question">&ldquo;Can a multi-agent AI system autonomously research, analyse, and synthesise Scope 3 and embodied carbon intelligence for UK construction projects &mdash; reducing research time from days to minutes?&rdquo;</p>
-      <p>Three-agent CrewAI pipeline (Researcher &rarr; Analyst &rarr; Writer) automates sustainability briefing production for UK construction teams. Agents use SerperDev search, web scraping, and Python tools to surface, validate, and synthesise current regulatory guidance from RICS, UKGBC, GHG Protocol, and BREEAM. Produces professional briefings with a validated metrics table, compliance deadlines, and concrete actions in under 10 minutes.</p>
+      <p>Three-agent CrewAI pipeline (Researcher &rarr; Analyst &rarr; Writer) that autonomously researches, synthesises, and writes UK construction sustainability briefings from live regulatory sources. Produces outputs with compliance deadlines and concrete actions in under 10 minutes.</p>
       <div class="project-stats">
         <div class="stat-chip"><span class="stat-num">3</span><span class="stat-label">AI Agents</span></div>
         <div class="stat-chip"><span class="stat-num">9</span><span class="stat-label">Sources per Run</span></div>
