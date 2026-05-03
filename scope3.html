@@ -10,7 +10,7 @@
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self'; font-src 'self'; connect-src 'self'; frame-ancestors 'none';">
-<meta name="description" content="Free Scope 3 emissions calculator for UK construction SMEs. Calculate, report and reduce your supply chain carbon footprint using DEFRA 2024 factors.">
+<meta name="description" content="Free Scope 3 emissions calculator for UK construction SMEs. Calculate, report and reduce your supply chain carbon footprint using DEFRA 2025 factors.">
 <link rel="icon" type="image/png" href="logo.png.png">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -100,11 +100,15 @@ footer{border-top:1px solid #dde3ea;padding:1.2rem 1.25rem 1rem;text-align:cente
 </div>
 </a>
 <nav>
-<a href="/">Home</a>
-<a href="/#services">Services</a>
-<a href="/scope3" style="color:var(--green);font-weight:600">ClarityScope3</a>
-<a href="/#contact">Contact</a>
-</nav>
+      <a href="/">Home</a>
+      <a href="/#services">Services</a>
+      <a href="/#approach">Approach</a>
+      <a href="/#sectors">Sectors</a>
+      <a href="/portfolio.html">Portfolio</a>
+      <a href="/#contact">Contact</a>
+      <a href="/copilot.html">Copilot</a>
+      <a href="/scope3" class="nav-cta">ClarityScope3</a>
+    </nav>
 </div>
 </header>
 <main>
@@ -112,7 +116,7 @@ footer{border-top:1px solid #dde3ea;padding:1.2rem 1.25rem 1rem;text-align:cente
 <div class="tool-badge">FREE TOOL</div>
 <div class="eyebrow">Scope 3 Emissions Calculator</div>
 <h1>ClarityScope3</h1>
-<p>The simple, affordable Scope 3 emissions calculator for UK construction SMEs. Calculate your supply chain carbon footprint and generate reports for your main contractor clients.</p>
+<p>The simple, free Scope 3 emissions calculator for UK construction SMEs. Calculate your supply chain carbon footprint and generate reports for your main contractor clients.</p>
 </div>
 <div id="form-section">
 <div class="progress-bar">
@@ -233,7 +237,7 @@ footer{border-top:1px solid #dde3ea;padding:1.2rem 1.25rem 1rem;text-align:cente
 <a href="/#contact" class="btn" style="text-decoration:none;display:inline-block">Contact Us</a>
 </div>
 <div class="disclaimer">
-<strong>Disclaimer:</strong> This tool provides estimates based on DEFRA 2024 emission factors. Results should be reviewed by a qualified sustainability professional. Gaisina.ai accepts no liability for decisions made based on these estimates.<br>Data sources: DEFRA UK Government GHG Conversion Factors 2024.
+<strong>Disclaimer:</strong> This tool provides estimates based on DEFRA 2025 emission factors. Results should be reviewed by a qualified sustainability professional. Gaisina Consulting Group accepts no liability for decisions made based on these estimates.<br>Data sources: DEFRA UK Government GHG Conversion Factors 2025.
 </div>
 </div>
 </main>
@@ -398,18 +402,18 @@ for(var i=0;i<Math.min(3,recT.length);i++){doc.setFont('helvetica','bold');doc.t
 y=doc.internal.pageSize.getHeight()-25;
 doc.setDrawColor(200,200,200);doc.line(15,y,w-15,y);y+=5;
 doc.setFontSize(7);doc.setTextColor(120,120,120);
-doc.text('Methodology: Calculations based on DEFRA UK Government GHG Conversion Factors 2024.',15,y);y+=4;
+doc.text('Methodology: Calculations based on DEFRA UK Government GHG Conversion Factors 2025.',15,y);y+=4;
 doc.text('Disclaimer: This tool provides estimates. Results should be reviewed by a qualified sustainability professional.',15,y);y+=4;
-doc.text('Gaisina.ai accepts no liability for decisions made based on these estimates.',15,y);y+=4;
-doc.text('Data sources: DEFRA UK Government GHG Conversion Factors 2024.',15,y);y+=6;
+doc.text('Gaisina Consulting Group accepts no liability for decisions made based on these estimates.',15,y);y+=4;
+doc.text('Data sources: DEFRA UK Government GHG Conversion Factors 2025.',15,y);y+=6;
 doc.setFontSize(8);doc.setTextColor(45,106,79);doc.setFont('helvetica','bold');
-doc.text('Report prepared using ClarityScope3 by Gaisina.ai',w/2,y,{align:'center'});
+doc.text('Report prepared using ClarityScope3 by Gaisina Consulting Group',w/2,y,{align:'center'});
 doc.save('ClarityScope3_Report_'+d.company.replace(/[^a-zA-Z0-9]/g,'_')+'.pdf');
 }
 
 function shareResults(){
 var d=calculatedData;
-var t=d.company+' Scope 3 Emissions Report\nTotal: '+d.total.toFixed(2)+' tCO2e\nClarityScore: '+d.score+'/100\n\nCalculated using ClarityScope3 by Gaisina.ai\nhttps://gaisina.co.uk/scope3';
+var t=d.company+' Scope 3 Emissions Report\nTotal: '+d.total.toFixed(2)+' tCO2e\nClarityScore: '+d.score+'/100\n\nCalculated using ClarityScope3 by Gaisina Consulting Group\nhttps://gaisina.co.uk/scope3';
 if(navigator.share){navigator.share({title:'ClarityScope3 Report',text:t,url:'https://gaisina.co.uk/scope3'}).catch(function(){});}
 else{navigator.clipboard.writeText(t).then(function(){alert('Results copied to clipboard!');}).catch(function(){prompt('Copy to share:',t);});}
 }
